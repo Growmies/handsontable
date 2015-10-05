@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri Oct 02 2015 12:37:12 GMT+0200 (CEST)
+ * Date: Mon Oct 05 2015 13:46:42 GMT-0600 (MDT)
  */
 
 .handsontable {
@@ -73,7 +73,8 @@
   outline-width: 0;
   /* reset bootstrap table style. for more info see: https://github.com/handsontable/handsontable/issues/224 */
   max-width: none;
-  max-height: none;
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.4);
+  box-shadow: 1px 2px 5px rgba(0,0,0,.4); max-height: none;
 }
 
 .handsontable col {
@@ -887,14 +888,12 @@ thead .htCollapseButton:after {
   -webkit-text-size-adjust: none;
 }
 
-.topLeftSelectionHandle:not(.ht_master .topLeftSelectionHandle),
-.topLeftSelectionHandle-HitArea:not(.ht_master .topLeftSelectionHandle-HitArea) {
+.topLeftSelectionHandle:not(.ht_master .topLeftSelectionHandle) {
   z-index: 9999;
 }
 
 /* Initial left/top coordinates - overwritten when actual position is set */
 .topLeftSelectionHandle,
-.topLeftSelectionHandle-HitArea,
 .bottomRightSelectionHandle,
 .bottomRightSelectionHandle-HitArea {
   left: -10000px;

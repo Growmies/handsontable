@@ -497,6 +497,9 @@ Handsontable.Core = function Core(rootElement, userSettings) {
             }
             current.row++;
           }
+          if (source === 'autofill') {
+            setData = instance.runHooks('beforeAutofillSetData', start, end, direction, setData, input);
+          }
           instance.setDataAtCell(setData, null, null, source || 'populateFromArray');
           break;
       }
@@ -532,9 +535,11 @@ Handsontable.Core = function Core(rootElement, userSettings) {
      */
     finish: function() {
       var sel = instance.getSelected();
-      Handsontable.hooks.run(instance, 'afterSelectionEnd', sel[0], sel[1], sel[2], sel[3]);
+      Handsontable.hooks.run(instance, 'afterSelectionEnd', sel[0], sel[1], sel[2], sel[3], instance.selection.fullRange);
       Handsontable.hooks.run(instance, 'afterSelectionEndByProp', sel[0], instance.colToProp(sel[1]), sel[2], instance.colToProp(sel[3]));
       instance.selection.inProgress = false;
+
+      instance.selection.fullRange = 'none';
     },
 
     /**
@@ -621,7 +626,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
 
       // trigger handlers
       Handsontable.hooks.run(instance, 'afterSelection',
-          priv.selRange.from.row, priv.selRange.from.col, priv.selRange.to.row, priv.selRange.to.col);
+          priv.selRange.from.row, priv.selRange.from.col, priv.selRange.to.row, priv.selRange.to.col, instance.selection.fullRange);
       Handsontable.hooks.run(instance, 'afterSelectionByProp',
           priv.selRange.from.row, datamap.colToProp(priv.selRange.from.col), priv.selRange.to.row, datamap.colToProp(priv.selRange.to.col));
 

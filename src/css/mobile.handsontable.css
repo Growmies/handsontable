@@ -31,14 +31,12 @@
   -webkit-text-size-adjust: none;
 }
 
-.topLeftSelectionHandle:not(.ht_master .topLeftSelectionHandle),
-.topLeftSelectionHandle-HitArea:not(.ht_master .topLeftSelectionHandle-HitArea) {
+.topLeftSelectionHandle:not(.ht_master .topLeftSelectionHandle) {
   z-index: 9999;
 }
 
 /* Initial left/top coordinates - overwritten when actual position is set */
 .topLeftSelectionHandle,
-.topLeftSelectionHandle-HitArea,
 .bottomRightSelectionHandle,
 .bottomRightSelectionHandle-HitArea {
   left: -10000px;

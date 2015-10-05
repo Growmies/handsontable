@@ -678,6 +678,18 @@ const REGISTERED_HOOKS = [
    * @param {Boolean} isDoubleClick Flag that determines whether there was a double-click.
    */
   'afterRowResize',
+
+  /**
+   *
+   * @event Hooks#beforeAutofillSetData
+   *
+   * @param {Number} start The start index
+   * @param {Number} end The end index
+   * @param {String} direction The direction of the autofill gesture
+   * @param {Array} setData Data the will be autofilled into the range specified
+   * @param {Object} input The value of the cell at the starting location
+   */
+  'beforeAutofillSetData'
 ];
 
 import {arrayEach} from './helpers/array';

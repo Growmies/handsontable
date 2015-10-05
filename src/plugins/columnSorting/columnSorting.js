@@ -248,6 +248,16 @@ class ColumnSorting extends BasePlugin {
    */
   defaultSort(sortOrder) {
     return function(a, b) {
+      if ((a[1] && b[1]) && ((numeral().unformat(a[1]) == a[1] && numeral().unformat(b[1]) == b[1]) || (a[1].indexOf('$') > -1 && b[1].indexOf('$') > -1))) {
+        var unformattedA = numeral().unformat(a[1]);
+        var unformattedB = numeral().unformat(b[1]);
+        if (unformattedA < unformattedB) {
+          return sortOrder ? -1 : 1;
+        }
+        if (unformattedA > unformattedB) {
+          return sortOrder ? 1 : -1;
+        }
+      }
       if (typeof a[1] == 'string') {
         a[1] = a[1].toLowerCase();
       }
