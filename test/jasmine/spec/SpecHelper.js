@@ -2,6 +2,10 @@ var spec = function () {
   return jasmine.getEnv().currentSpec;
 };
 
+var hot = function() {
+  return spec().$container.data('handsontable');
+};
+
 var handsontable = function (options) {
   var currentSpec = spec();
   currentSpec.$container.handsontable(options);
@@ -13,6 +17,9 @@ beforeEach(function () {
   var matchers = {
     toBeInArray: function (arr) {
       return ($.inArray(this.actual, arr) > -1);
+    },
+    toBeFunction: function () {
+      return typeof this.actual === 'function';
     },
     toBeAroundValue: function (val) {
       this.message = function (val) {
@@ -26,6 +33,12 @@ beforeEach(function () {
   };
 
   this.addMatchers(matchers);
+
+  if (document.activeElement && document.activeElement != document.body) {
+    document.activeElement.blur();
+  } else if (!document.activeElement) { // IE
+    document.body.focus();
+  }
 });
 
 /**
@@ -46,12 +59,22 @@ var getTopClone = function () {
   return spec().$container.find('.ht_clone_top');
 };
 
+var getTopLeftClone = function () {
+  return spec().$container.find('.ht_clone_top_left_corner');
+};
+// for compatybility
+var getCornerClone = getTopLeftClone;
+
 var getLeftClone = function () {
   return spec().$container.find('.ht_clone_left');
 };
 
-var getCornerClone = function () {
-  return spec().$container.find('.ht_clone_top_left_corner');
+var getBottomClone = function () {
+  return spec().$container.find('.ht_clone_bottom');
+};
+
+var getBottomLeftClone = function () {
+  return spec().$container.find('.ht_clone_bottom_left_corner');
 };
 
 //Rename me to countTD
@@ -94,8 +117,8 @@ var contextMenu = function (cell) {
   var cellOffset = $(cell).offset();
 
   $(cell).simulate('contextmenu',{
-    clientX: cellOffset.left,
-    clientY: cellOffset.top
+    clientX: cellOffset.left - Handsontable.dom.getWindowScrollLeft(),
+    clientY: cellOffset.top - Handsontable.dom.getWindowScrollTop(),
   });
 };
 
@@ -123,6 +146,17 @@ var closeDropdownMenu = function () {
   $(document).simulate('mousedown');
 };
 
+var dropdownMenuRootElement = function () {
+  var plugin = hot().getPlugin('dropdownMenu');
+  var root;
+
+  if (plugin && plugin.menu) {
+    root = plugin.menu.container;
+  }
+
+  return root;
+};
+
 /**
  * Returns a function that triggers a mouse event
  * @param {String} type Event type
@@ -134,13 +168,15 @@ var handsontableMouseTriggerFactory = function (type, button) {
       element = $(element);
     }
     var ev = $.Event(type);
-    ev.which = button || 1; //left click by default
-    element.simulate(type,ev);
-//    element.trigger(ev);
+    ev.which = button || 1; // left click by default
+
+    element.simulate(type, ev);
   }
 };
 
 var mouseDown = handsontableMouseTriggerFactory('mousedown');
+var mouseMove = handsontableMouseTriggerFactory('mousemove');
+var mouseOver = handsontableMouseTriggerFactory('mouseover');
 var mouseUp = handsontableMouseTriggerFactory('mouseup');
 var mouseDoubleClick = function (element) {
   mouseDown(element);
@@ -413,8 +449,10 @@ var getDataAtRowProp = handsontableMethodFactory('getDataAtRowProp');
 var getDataAtRow = handsontableMethodFactory('getDataAtRow');
 var getDataAtCol = handsontableMethodFactory('getDataAtCol');
 var getDataType = handsontableMethodFactory('getDataType');
+var getSourceData = handsontableMethodFactory('getSourceData');
 var getSourceDataAtCol = handsontableMethodFactory('getSourceDataAtCol');
 var getSourceDataAtRow = handsontableMethodFactory('getSourceDataAtRow');
+var getValue = handsontableMethodFactory('getValue');
 var getRowHeader = handsontableMethodFactory('getRowHeader');
 var getColHeader = handsontableMethodFactory('getColHeader');
 var alter = handsontableMethodFactory('alter');
@@ -436,11 +474,20 @@ var getActiveEditor = handsontableMethodFactory('getActiveEditor');
  * @returns {Number}
  */
 function colWidth($elem, col) {
-  var TD = $elem[0].querySelector('TBODY TR').querySelectorAll('TD')[col];
-  if (!TD) {
+  var TR = $elem[0].querySelector('TBODY TR');
+  var cell;
+
+  if (TR) {
+    cell = TR.querySelectorAll('TD')[col];
+  } else {
+    cell = $elem[0].querySelector('THEAD TR').querySelectorAll('TH')[col];
+  }
+
+  if (!cell) {
     throw new Error("Cannot find table column of index '" + col + "'");
   }
-  return TD.offsetWidth;
+
+  return cell.offsetWidth;
 }
 
 /**
@@ -649,14 +696,14 @@ function moveFirstDisplayedRowAfterSecondRow(container, firstDisplayedRowIndex) 
   }
 }
 
-function moveSecondDisplayedColumnBeforeFirstColumn(container, secondDisplayedColIndex){
+function swapDisplayedColumns(container, from, to) {
   var $mainContainer = container.parents(".handsontable").not("[class*=clone]").not("[class*=master]").first();
   var $colHeaders = container.find('thead tr:eq(0) th');
-  var $firstColHeader = $colHeaders.eq(secondDisplayedColIndex - 1);
-  var $secondColHeader = $colHeaders.eq(secondDisplayedColIndex);
+  var $to = $colHeaders.eq(to);
+  var $from = $colHeaders.eq(from);
 
   //Enter the second column header
-  $secondColHeader.simulate('mouseover');
+  $from.simulate('mouseover');
   var $manualColumnMover = $mainContainer.find('.manualColumnMover');
 
   //Grab the second column
@@ -669,34 +716,8 @@ function moveSecondDisplayedColumnBeforeFirstColumn(container, secondDisplayedCo
     pageX : $manualColumnMover[0].getBoundingClientRect().left - 20
   });
 
-  $firstColHeader.simulate('mouseover');
+  $to.simulate('mouseover');
 
   //Drop the second column
-  $secondColHeader.simulate('mouseup');
-}
-
-function moveFirstDisplayedColumnAfterSecondColumn(container, firstDisplayedColIndex){
-  var $mainContainer = container.parents(".handsontable").not("[class*=clone]").not("[class*=master]").first();
-  var $colHeaders = container.find('thead tr:eq(0) th');
-  var $firstColHeader = $colHeaders.eq(firstDisplayedColIndex);
-  var $secondColHeader = $colHeaders.eq(firstDisplayedColIndex + 1);
-
-  //Enter the first column header
-  $firstColHeader.simulate('mouseover');
-  var $manualColumnMover = $mainContainer.find('.manualColumnMover');
-
-  //Grab the first column
-  $manualColumnMover.simulate('mousedown',{
-    pageX:$manualColumnMover[0].getBoundingClientRect().left
-  });
-
-  //Drag the first column over the second column
-  $manualColumnMover.simulate('mousemove',{
-    pageX:$manualColumnMover[0].getBoundingClientRect().left + 20
-  });
-
-  $secondColHeader.simulate('mouseover');
-
-  //Drop the first column
-  $firstColHeader.simulate('mouseup');
+  $from.simulate('mouseup');
 }

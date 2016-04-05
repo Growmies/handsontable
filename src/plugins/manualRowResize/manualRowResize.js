@@ -4,14 +4,15 @@ import {eventManager as eventManagerObject} from './../../eventManager';
 import {pageX, pageY} from './../../helpers/dom/event';
 import {registerPlugin} from './../../plugins';
 
+// Developer note! Whenever you make a change in this file, make an analogous change in manualRowResize.js
+
 /**
+ * @description
  * ManualRowResize Plugin.
  *
  * Has 2 UI components:
  * - handle - the draggable element that sets the desired height of the row.
  * - guide - the helper guide that shows the desired height as a horizontal guide.
- *
- * Developer note! Whenever you make a change in this file, make an analogous change in manualRowResize.js
  *
  * @plugin ManualRowResize
  */
@@ -87,7 +88,8 @@ class ManualRowResize extends BasePlugin {
 
     if (Array.isArray(initialRowHeights)) {
       this.manualRowHeights = initialRowHeights;
-    } else {
+
+    } else if (!initialRowHeights) {
       this.manualRowHeights = [];
     }
   }
@@ -122,7 +124,7 @@ class ManualRowResize extends BasePlugin {
   /**
    * Set the resize handle position.
    *
-   * @param {HTMLCellElement} TH
+   * @param {HTMLCellElement} TH TH HTML element.
    */
   setupHandlePosition(TH) {
     this.currentTH = TH;
@@ -178,17 +180,18 @@ class ManualRowResize extends BasePlugin {
   /**
    * Check if provided element is considered a row header.
    *
-   * @param {HTMLElement} element
+   * @param {HTMLElement} element HTML element.
    * @returns {Boolean}
    */
   checkIfRowHeader(element) {
-    if (element.tagName != 'BODY') {
-      if (element.parentNode.tagName == 'TBODY') {
+    if (element != this.hot.rootElement) {
+      let parent = element.parentNode;
+
+      if (parent.tagName === 'TBODY') {
         return true;
-      } else {
-        element = element.parentNode;
-        return this.checkIfRowHeader(element);
       }
+
+      return this.checkIfRowHeader(parent);
     }
 
     return false;
@@ -197,7 +200,7 @@ class ManualRowResize extends BasePlugin {
   /**
    * Get the TH element from the provided element.
    *
-   * @param {HTMLElement} element
+   * @param {HTMLElement} element HTML element.
    * @returns {HTMLElement}
    */
   getTHFromTargetElement(element) {
@@ -336,7 +339,7 @@ class ManualRowResize extends BasePlugin {
    * Cache the current row height.
    *
    * @param {Number} row Row index.
-   * @param {Number} height
+   * @param {Number} height Row height.
    * @returns {Number}
    */
   setManualSize(row, height) {
@@ -350,7 +353,7 @@ class ManualRowResize extends BasePlugin {
    * Modify the provided row height, based on the plugin settings.
    *
    * @private
-   * @param {Number} height
+   * @param {Number} height Row height.
    * @param {Number} row Row index.
    * @returns {Number}
    */

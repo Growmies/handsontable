@@ -7,8 +7,6 @@ import {toUpperCaseFirst} from './helpers/string';
 
 const registeredPlugins = new WeakMap();
 
-Handsontable.plugins = Handsontable.plugins || {};
-
 /**
  * Registers plugin under given name
  *

@@ -115,16 +115,17 @@ function WalkontableEvent(instance) {
     //eventManager.removeEventListener(that.instance.wtTable.holder, "mousedown", onMouseDown);
   };
 
-  var lastMouseOver;
   var onMouseOver = function(event) {
-    var table, td;
+    var table, td, mainWOT;
 
     if (that.instance.hasSetting('onCellMouseOver')) {
       table = that.instance.wtTable.TABLE;
       td = closest(event.realTarget, ['TD', 'TH'], table);
+      mainWOT = that.instance.cloneSource || that.instance;
 
-      if (td && td !== lastMouseOver && isChildOf(td, table)) {
-        lastMouseOver = td;
+      if (td && td !== mainWOT.lastMouseOver && isChildOf(td, table)) {
+        mainWOT.lastMouseOver = td;
+
         that.instance.getSetting('onCellMouseOver', event, that.instance.wtTable.getCoords(td), td, that.instance);
       }
     }
@@ -237,8 +238,10 @@ WalkontableEvent.prototype.parentCell = function(elem) {
   var cell = {};
   var TABLE = this.instance.wtTable.TABLE;
   var TD = closest(elem, ['TD', 'TH'], TABLE);
+  var referenceTABLE = closest(TD, ['TABLE']);
 
-  if (TD && isChildOf(TD, TABLE)) {
+  // Don't return cell when TD is not belong to the right table element (situations when table cell contain another hot instance)
+  if (TD && isChildOf(TD, TABLE) && referenceTABLE == TABLE) {
     cell.coords = this.instance.wtTable.getCoords(TD);
     cell.TD = TD;
 
