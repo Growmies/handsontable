@@ -1,28 +1,27 @@
 /*!
-(The MIT License)
+ * Handsontable 0.24.1
+ * Handsontable is a JavaScript library for editable tables with basic copy-paste compatibility with Excel and Google Docs
+ *
+ * This is a fork of handsontable by Grow - (grow.com). It provides a few extra features, such as:
+ * 1) When you click on a row or column header, the callback also tells you that a row or column header was click (fullRange, internally)
+ * 2) Sorting of any kind of formatted numbers (currecy included) with the help of the numeral.js library.
+ * 3) The ability to inspect/modify the data that will be applied after a dragging+copying gesture
+ *
+ * The above features are critical for the requirements of our organization.
+ *
+ * Copyright (c) 2012-2014 Marcin Warpechowski
+ * Copyright 2016 Handsoncode sp. z o.o. <hello@handsontable.com>
+ * Licensed under the MIT license.
+ * http://handsontable.com/
+ *
+ * Date: Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)
+ */
+/*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
-Copyright (c) 2012-2014 Marcin Warpechowski
-Copyright (c) 2015 Handsoncode sp. z o.o. <hello@handsoncode.net>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+window.Handsontable = {
+  version: '0.24.1',
+  buildDate: 'Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)',
+};
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Handsontable = f()}})(function(){var define,module,exports;return (function init(modules, cache, entry) {
   (function outer (modules, cache, entry) {
     // Save the require from previous bundle to this closure if any
@@ -118,7 +117,7 @@ if (window.jQuery) {
   })(window, jQuery, Handsontable);
 }
 
-//#
+//# 
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -513,7 +512,7 @@ var WalkontableBorder = function WalkontableBorder(wotInstance, settings) {
 ;
 window.WalkontableBorder = WalkontableBorder;
 
-//#
+//# 
 },{"cell/coords":5,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"overlay/_base.js":11}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -687,7 +686,7 @@ var $WalkontableViewportColumnsCalculator = WalkontableViewportColumnsCalculator
 ;
 window.WalkontableViewportColumnsCalculator = WalkontableViewportColumnsCalculator;
 
-//#
+//# 
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -778,7 +777,7 @@ var $WalkontableViewportRowsCalculator = WalkontableViewportRowsCalculator;
 ;
 window.WalkontableViewportRowsCalculator = WalkontableViewportRowsCalculator;
 
-//#
+//# 
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -828,7 +827,7 @@ var WalkontableCellCoords = function WalkontableCellCoords(row, col) {
 ;
 window.WalkontableCellCoords = WalkontableCellCoords;
 
-//#
+//# 
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1086,7 +1085,7 @@ var $WalkontableCellRange = WalkontableCellRange;
 ;
 window.WalkontableCellRange = WalkontableCellRange;
 
-//#
+//# 
 },{"cell/coords":5}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1262,7 +1261,7 @@ var Walkontable = function Walkontable(settings) {
 ;
 window.Walkontable = Walkontable;
 
-//#
+//# 
 },{"event":8,"helpers/dom/element":45,"helpers/object":51,"helpers/string":53,"overlay/_base.js":11,"overlay/debug.js":12,"overlay/left.js":13,"overlay/top.js":14,"overlay/topLeftCorner.js":15,"overlays":16,"scroll":17,"settings":19,"table":20,"viewport":22}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1426,7 +1425,7 @@ WalkontableEvent.prototype.parentCell = function(elem) {
 ;
 window.WalkontableEvent = WalkontableEvent;
 
-//#
+//# 
 },{"eventManager":41,"helpers/dom/element":45}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1469,7 +1468,7 @@ var WalkontableColumnFilter = function WalkontableColumnFilter(offset, total, co
 ;
 window.WalkontableColumnFilter = WalkontableColumnFilter;
 
-//#
+//# 
 },{}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1512,7 +1511,7 @@ var WalkontableRowFilter = function WalkontableRowFilter(offset, total, countTH)
 ;
 window.WalkontableRowFilter = WalkontableRowFilter;
 
-//#
+//# 
 },{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1634,7 +1633,7 @@ var $WalkontableOverlay = WalkontableOverlay;
 ;
 window.WalkontableOverlay = WalkontableOverlay;
 
-//#
+//# 
 },{"eventManager":41,"helpers/dom/element":45,"helpers/object":51}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1660,7 +1659,7 @@ var $WalkontableDebugOverlay = WalkontableDebugOverlay;
 window.WalkontableDebugOverlay = WalkontableDebugOverlay;
 WalkontableOverlay.registerOverlay(WalkontableOverlay.CLONE_DEBUG, WalkontableDebugOverlay);
 
-//#
+//# 
 },{"_base":11,"helpers/dom/element":45}],13:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -1854,7 +1853,7 @@ var $WalkontableLeftOverlay = WalkontableLeftOverlay;
 window.WalkontableLeftOverlay = WalkontableLeftOverlay;
 WalkontableOverlay.registerOverlay(WalkontableOverlay.CLONE_LEFT, WalkontableLeftOverlay);
 
-//#
+//# 
 },{"_base":11,"helpers/dom/element":45}],14:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -2056,7 +2055,7 @@ var $WalkontableTopOverlay = WalkontableTopOverlay;
 window.WalkontableTopOverlay = WalkontableTopOverlay;
 WalkontableOverlay.registerOverlay(WalkontableOverlay.CLONE_TOP, WalkontableTopOverlay);
 
-//#
+//# 
 },{"_base":11,"helpers/dom/element":45}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -2121,7 +2120,7 @@ var $WalkontableTopLeftCornerOverlay = WalkontableTopLeftCornerOverlay;
 window.WalkontableTopLeftCornerOverlay = WalkontableTopLeftCornerOverlay;
 WalkontableOverlay.registerOverlay(WalkontableOverlay.CLONE_TOP_LEFT_CORNER, WalkontableTopLeftCornerOverlay);
 
-//#
+//# 
 },{"_base":11,"helpers/dom/element":45}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -2601,7 +2600,7 @@ var WalkontableOverlays = function WalkontableOverlays(wotInstance) {
 ;
 window.WalkontableOverlays = WalkontableOverlays;
 
-//#
+//# 
 },{"eventManager":41,"helpers/dom/element":45,"helpers/unicode":54}],17:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -2783,7 +2782,7 @@ var WalkontableScroll = function WalkontableScroll(wotInstance) {
 ;
 window.WalkontableScroll = WalkontableScroll;
 
-//#
+//# 
 },{"helpers/dom/element":45,"helpers/number":50}],18:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -2911,7 +2910,7 @@ var WalkontableSelection = function WalkontableSelection(settings, cellRange) {
 ;
 window.WalkontableSelection = WalkontableSelection;
 
-//#
+//# 
 },{"border":2,"cell/coords":5,"cell/range":6,"helpers/dom/element":45}],19:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3029,7 +3028,7 @@ var WalkontableSettings = function WalkontableSettings(wotInstance, settings) {
 ;
 window.WalkontableSettings = WalkontableSettings;
 
-//#
+//# 
 },{"helpers/dom/element":45}],20:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3430,7 +3429,7 @@ var WalkontableTable = function WalkontableTable(wotInstance, table) {
 ;
 window.WalkontableTable = WalkontableTable;
 
-//#
+//# 
 },{"cell/coords":5,"cell/range":6,"filter/column":9,"filter/row":10,"helpers/dom/element":45,"tableRenderer":21}],21:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3854,7 +3853,7 @@ function replaceThWithTd(TH, TR) {
 ;
 window.WalkontableTableRenderer = WalkontableTableRenderer;
 
-//#
+//# 
 },{"helpers/dom/element":45}],22:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -4155,7 +4154,7 @@ var WalkontableViewport = function WalkontableViewport(wotInstance) {
 ;
 window.WalkontableViewport = WalkontableViewport;
 
-//#
+//# 
 },{"calculator/viewportColumns":3,"calculator/viewportRows":4,"eventManager":41,"helpers/dom/element":45}],23:[function(require,module,exports){
 "use strict";
 var $__shims_47_classes__,
@@ -4209,7 +4208,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = require("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = require("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Wed Mar 16 2016 12:23:01 GMT+0100 (CET)';
+Handsontable.buildDate = 'Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.24.1';
 var baseVersion = '@@baseVersion';
@@ -4237,7 +4236,7 @@ arrayHelpers.arrayEach(DOM, (function(helper) {
   }));
 }));
 
-//#
+//# 
 },{"cellTypes":24,"core":25,"es6collections":"es6collections","helpers/array":42,"helpers/browser":43,"helpers/data":44,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/feature":47,"helpers/function":48,"helpers/mixed":49,"helpers/number":50,"helpers/object":51,"helpers/setting":52,"helpers/string":53,"helpers/unicode":54,"pluginHooks":57,"plugins":58,"plugins/jqueryHandsontable":1,"renderers/_cellDecorator":92,"shims/classes":99}],24:[function(require,module,exports){
 "use strict";
 var $__helpers_47_browser__,
@@ -4346,7 +4345,7 @@ Handsontable.cellLookup = {validator: {
     autocomplete: Handsontable.AutocompleteValidator
   }};
 
-//#
+//# 
 },{"editors":29,"editors/autocompleteEditor":31,"editors/checkboxEditor":32,"editors/dateEditor":33,"editors/dropdownEditor":34,"editors/handsontableEditor":35,"editors/mobileTextEditor":36,"editors/numericEditor":37,"editors/passwordEditor":38,"editors/selectEditor":39,"editors/textEditor":40,"helpers/browser":43,"renderers":91,"renderers/autocompleteRenderer":93,"renderers/checkboxRenderer":94,"renderers/htmlRenderer":95,"renderers/numericRenderer":96,"renderers/passwordRenderer":97,"renderers/textRenderer":98,"validators/autocompleteValidator":104,"validators/dateValidator":105,"validators/numericValidator":106,"validators/timeValidator":107}],25:[function(require,module,exports){
 "use strict";
 var $__numeral__,
@@ -6157,7 +6156,7 @@ DefaultSettings.prototype = {
 };
 Handsontable.DefaultSettings = DefaultSettings;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/calculator/viewportColumns":3,"3rdparty/walkontable/src/cell/coords":5,"3rdparty/walkontable/src/cell/range":6,"3rdparty/walkontable/src/selection":18,"dataMap":26,"dataSource":27,"editorManager":28,"eventManager":41,"helpers/array":42,"helpers/data":44,"helpers/dom/element":45,"helpers/number":50,"helpers/object":51,"helpers/setting":52,"helpers/string":53,"numeral":"numeral","plugins":58,"renderers":91,"tableView":100}],26:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -6631,7 +6630,7 @@ DataMap.prototype.destroy = function() {
 ;
 Handsontable.DataMap = DataMap;
 
-//#
+//# 
 },{"SheetClip":"SheetClip","helpers/array":42,"helpers/data":44,"helpers/number":50,"helpers/object":51,"helpers/setting":52,"multiMap":56,"utils/interval":102}],27:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -6720,7 +6719,7 @@ var DataSource = function DataSource(hotInstance) {
 }, {});
 ;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/data":44,"helpers/number":50,"helpers/object":51,"helpers/setting":52}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7016,7 +7015,7 @@ function EditorManager(instance, priv, selection) {
   init();
 }
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"editors":29,"eventManager":41,"helpers/dom/event":46,"helpers/unicode":54}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7098,7 +7097,7 @@ function hasEditor(editorName) {
   return registeredEditorNames[editorName] ? true : false;
 }
 
-//#
+//# 
 },{"helpers/string":53}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7311,7 +7310,7 @@ BaseEditor.prototype.checkEditorSection = function() {
   return section;
 };
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"helpers/mixed":49}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7575,7 +7574,7 @@ AutocompleteEditor.prototype.allowKeyEventPropagation = function(keyCode) {
 ;
 registerEditor('autocomplete', AutocompleteEditor);
 
-//#
+//# 
 },{"editors":29,"handsontableEditor":35,"helpers/array":42,"helpers/dom/element":45,"helpers/mixed":49,"helpers/unicode":54}],32:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7612,7 +7611,7 @@ var $CheckboxEditor = CheckboxEditor;
 ;
 registerEditor('checkbox', CheckboxEditor);
 
-//#
+//# 
 },{"_baseEditor":30,"editors":29,"helpers/dom/element":45}],33:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7799,7 +7798,7 @@ var $DateEditor = DateEditor;
 ;
 registerEditor('date', DateEditor);
 
-//#
+//# 
 },{"editors":29,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/object":51,"helpers/unicode":54,"moment":"moment","pikaday":"pikaday","textEditor":40}],34:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7835,7 +7834,7 @@ Handsontable.hooks.add('beforeValidate', function(value, row, col, source) {
 ;
 registerEditor('dropdown', DropdownEditor);
 
-//#
+//# 
 },{"autocompleteEditor":31,"editors":29}],35:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -7986,7 +7985,7 @@ HandsontableEditor.prototype.assignHooks = function() {
 ;
 registerEditor('handsontable', HandsontableEditor);
 
-//#
+//# 
 },{"editors":29,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/object":51,"helpers/unicode":54,"textEditor":40}],36:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -8245,7 +8244,7 @@ MobileTextEditor.prototype.destroy = function() {
 ;
 registerEditor('mobile', MobileTextEditor);
 
-//#
+//# 
 },{"_baseEditor":30,"editors":29,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/unicode":54}],37:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -8279,7 +8278,7 @@ var $NumericEditor = NumericEditor;
 ;
 registerEditor('numeric', NumericEditor);
 
-//#
+//# 
 },{"editors":29,"numeral":"numeral","textEditor":40}],38:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -8314,7 +8313,7 @@ var $PasswordEditor = PasswordEditor;
 ;
 registerEditor('password', PasswordEditor);
 
-//#
+//# 
 },{"editors":29,"helpers/dom/element":45,"textEditor":40}],39:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -8539,7 +8538,7 @@ SelectEditor.prototype.getEditedCell = function() {
 ;
 registerEditor('select', SelectEditor);
 
-//#
+//# 
 },{"_baseEditor":30,"editors":29,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/unicode":54}],40:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -8857,7 +8856,7 @@ TextEditor.prototype.destroy = function() {
 ;
 registerEditor('text', TextEditor);
 
-//#
+//# 
 },{"_baseEditor":30,"autoResize":"autoResize","editors":29,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/unicode":54}],41:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -9062,7 +9061,7 @@ function eventManager(context) {
   return new EventManager(context);
 }
 
-//#
+//# 
 },{"helpers/dom/element":45,"helpers/dom/event":46,"helpers/feature":47}],42:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -9221,7 +9220,7 @@ function arrayUnique(array) {
   return unique;
 }
 
-//#
+//# 
 },{}],43:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -9265,7 +9264,7 @@ function isMobileBrowser(userAgent) {
   return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent));
 }
 
-//#
+//# 
 },{}],44:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -9394,7 +9393,7 @@ function cellMethodLookupFactory(methodName, allowUndefined) {
   }
 }
 
-//#
+//# 
 },{"object":51}],45:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10075,7 +10074,7 @@ function isOutsideInput(element) {
   return isInput(element) && element.className.indexOf('handsontableInput') == -1 && element.className.indexOf('copyPaste') == -1;
 }
 
-//#
+//# 
 },{"../browser":43,"../feature":47}],46:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10127,7 +10126,7 @@ function pageY(event) {
   return event.clientY + getWindowScrollTop();
 }
 
-//#
+//# 
 },{"element":45}],47:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10237,7 +10236,7 @@ function getComparisonFunction(language) {
   return comparisonFunction;
 }
 
-//#
+//# 
 },{}],48:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10406,7 +10405,7 @@ function curryRight(func) {
   return given([]);
 }
 
-//#
+//# 
 },{"array":42}],49:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10434,7 +10433,7 @@ function stringify(value) {
   }
 }
 
-//#
+//# 
 },{}],50:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10488,7 +10487,7 @@ function valueAccordingPercent(value, percent) {
   return percent;
 }
 
-//#
+//# 
 },{}],51:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10701,7 +10700,7 @@ function getProperty(object, name) {
   return result;
 }
 
-//#
+//# 
 },{"array":42}],52:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10723,7 +10722,7 @@ function columnFactory(GridSettings, conflictList) {
   return ColumnSettings;
 }
 
-//#
+//# 
 },{"object":51}],53:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10838,7 +10837,7 @@ function padStart(string, maxLength) {
 }
 ;
 
-//#
+//# 
 },{"mixed":49,"number":50}],54:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10927,7 +10926,7 @@ function isKey(keyCode, baseCode) {
   return result;
 }
 
-//#
+//# 
 },{"array":42}],55:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -10972,7 +10971,7 @@ defineGetter(localHooks, 'MIXIN_NAME', MIXIN_NAME, {
 Handsontable.utils = Handsontable.utils || {};
 Handsontable.utils.localHooks = localHooks;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/object":51}],56:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11024,7 +11023,7 @@ function MultiMap() {
   }
 }
 
-//#
+//# 
 },{}],57:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11175,7 +11174,7 @@ var Hooks = function Hooks() {
 Handsontable.utils = Handsontable.utils || {};
 Handsontable.utils.Hooks = Hooks;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/object":51}],58:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11247,7 +11246,7 @@ function getPluginName(hotInstance, plugin) {
 }
 ;
 
-//#
+//# 
 },{"helpers/object":51,"helpers/string":53}],59:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11380,7 +11379,7 @@ var BasePlugin = function BasePlugin(hotInstance) {
 var $__default = BasePlugin;
 Handsontable.plugins.BasePlugin = BasePlugin;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/object":51,"plugins":58}],60:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11662,7 +11661,7 @@ var $AutoColumnSize = AutoColumnSize;
 ;
 registerPlugin('autoColumnSize', AutoColumnSize);
 
-//#
+//# 
 },{"3rdparty/walkontable/src/calculator/viewportColumns":3,"_base":59,"helpers/array":42,"helpers/dom/element":45,"helpers/feature":47,"helpers/number":50,"helpers/object":51,"helpers/string":53,"plugins":58,"utils/ghostTable":101,"utils/samplesGenerator":103}],61:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -11981,7 +11980,7 @@ var $AutoRowSize = AutoRowSize;
 ;
 registerPlugin('autoRowSize', AutoRowSize);
 
-//#
+//# 
 },{"_base":59,"helpers/array":42,"helpers/dom/element":45,"helpers/feature":47,"helpers/number":50,"helpers/object":51,"helpers/string":53,"plugins":58,"utils/ghostTable":101,"utils/samplesGenerator":103}],62:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -12257,7 +12256,7 @@ function settingsFactory(settings) {
 }
 Handsontable.Autofill = Autofill;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"eventManager":41,"helpers/dom/element":45,"plugins":58}],63:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -12674,7 +12673,7 @@ var $ColumnSorting = ColumnSorting;
 ;
 registerPlugin('columnSorting', ColumnSorting);
 
-//#
+//# 
 },{"_base":59,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"plugins":58}],64:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -12762,7 +12761,7 @@ var $CommentEditor = CommentEditor;
 });
 ;
 
-//#
+//# 
 },{"helpers/dom/element":45}],65:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -13057,7 +13056,7 @@ var $Comments = Comments;
 ;
 registerPlugin('comments', Comments);
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"_base":59,"commentEditor":64,"eventManager":41,"helpers/dom/element":45,"plugins":58}],66:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -13130,7 +13129,7 @@ function findSubCommand(subCommandName, subCommands) {
 }
 ;
 
-//#
+//# 
 },{"helpers/array":42}],67:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -13324,7 +13323,7 @@ Handsontable.hooks.register('afterContextMenuExecute');
 ;
 registerPlugin('contextMenu', ContextMenu);
 
-//#
+//# 
 },{"_base":59,"commandExecutor":66,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/object":51,"itemsFactory":69,"menu":70,"plugins":58,"predefinedItems":71}],68:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -13404,7 +13403,7 @@ var Cursor = function Cursor(object) {
 Handsontable.plugins.utils = Handsontable.plugins.utils || {};
 Handsontable.plugins.utils.Cursor = Cursor;
 
-//#
+//# 
 },{"helpers/dom/element":45,"helpers/dom/event":46}],69:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -13523,7 +13522,7 @@ function getItems() {
 }
 ;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/object":51,"predefinedItems":71}],70:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -14034,7 +14033,7 @@ var $Menu = Menu;
 mixin(Menu, localHooks);
 ;
 
-//#
+//# 
 },{"cursor":68,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/function":48,"helpers/object":51,"helpers/unicode":54,"mixins/localHooks":55,"predefinedItems":71,"utils":72}],71:[function(require,module,exports){
 "use strict";
 var $__4;
@@ -14593,7 +14592,7 @@ var _predefinedItems = ($__4 = {}, Object.defineProperty($__4, SEPARATOR, {
   writable: true
 }), $__4);
 
-//#
+//# 
 },{"helpers/number":50,"helpers/object":51,"utils":72}],72:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -14732,7 +14731,7 @@ function markLabelAsSelected(label) {
   return '<span class="selected">' + String.fromCharCode(10003) + '</span>' + label;
 }
 
-//#
+//# 
 },{"helpers/dom/element":45}],73:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -14864,7 +14863,7 @@ var $ContextMenuCopyPaste = ContextMenuCopyPaste;
 ;
 registerPlugin('contextMenuCopyPaste', ContextMenuCopyPaste);
 
-//#
+//# 
 },{"_base":59,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"plugins":58,"zeroclipboard":"zeroclipboard"}],74:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -15067,7 +15066,7 @@ Handsontable.hooks.register('afterCopyLimit');
 Handsontable.hooks.register('modifyCopyableRange');
 ;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"3rdparty/walkontable/src/cell/range":6,"SheetClip":"SheetClip","copyPaste":"copyPaste","helpers/array":42,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/function":48,"helpers/number":50,"helpers/unicode":54,"plugins":58}],75:[function(require,module,exports){
 "use strict";
 var $___46__46__47__46__46__47_plugins__,
@@ -15404,7 +15403,7 @@ Handsontable.hooks.add('afterInit', function() {
 });
 Handsontable.CustomBorders = CustomBorders;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/range":6,"3rdparty/walkontable/src/selection":18,"plugins":58}],76:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -15492,7 +15491,7 @@ Handsontable.hooks.add('afterOnCellCornerMouseDown', function() {
 });
 Handsontable.plugins.DragToScroll = DragToScroll;
 
-//#
+//# 
 },{"eventManager":41,"plugins":58}],77:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -15634,7 +15633,7 @@ var $ManualColumnFreeze = ManualColumnFreeze;
 ;
 registerPlugin('manualColumnFreeze', ManualColumnFreeze);
 
-//#
+//# 
 },{"_base":59,"plugins":58}],78:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -15971,7 +15970,7 @@ Handsontable.hooks.register('beforeColumnMove');
 Handsontable.hooks.register('afterColumnMove');
 Handsontable.hooks.register('unmodifyCol');
 
-//#
+//# 
 },{"_base.js":59,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/number":50,"plugins":58}],79:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -16232,7 +16231,7 @@ var $ManualColumnResize = ManualColumnResize;
 ;
 registerPlugin('manualColumnResize', ManualColumnResize);
 
-//#
+//# 
 },{"_base.js":59,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"plugins":58}],80:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -16554,7 +16553,7 @@ registerPlugin('ManualRowMove', ManualRowMove);
 Handsontable.hooks.register('beforeRowMove');
 Handsontable.hooks.register('afterRowMove');
 
-//#
+//# 
 },{"_base.js":59,"eventManager":41,"helpers/array":42,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/number":50,"plugins":58}],81:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -16795,7 +16794,7 @@ var $ManualRowResize = ManualRowResize;
 ;
 registerPlugin('manualRowResize', ManualRowResize);
 
-//#
+//# 
 },{"_base.js":59,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"plugins":58}],82:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17333,7 +17332,7 @@ Handsontable.hooks.add('afterCreateRow', onAfterCreateRow);
 Handsontable.hooks.add('afterRemoveRow', onAfterRemoveRow);
 Handsontable.MergeCells = MergeCells;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"3rdparty/walkontable/src/cell/range":6,"3rdparty/walkontable/src/table":20,"helpers/dom/event":46,"plugins":58}],83:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17620,7 +17619,7 @@ var $MultipleSelectionHandles = MultipleSelectionHandles;
 ;
 registerPlugin('multipleSelectionHandles', MultipleSelectionHandles);
 
-//#
+//# 
 },{"_base":59,"eventManager":41,"helpers/dom/element":45,"plugins":58}],84:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17675,7 +17674,7 @@ var DataObserver = function DataObserver(observedData) {
 mixin(DataObserver, localHooks);
 ;
 
-//#
+//# 
 },{"../../helpers/object":51,"../../mixins/localHooks":55,"jsonpatch":"jsonpatch","utils":86}],85:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17819,7 +17818,7 @@ var $ObserveChanges = ObserveChanges;
 ;
 registerPlugin('observeChanges', ObserveChanges);
 
-//#
+//# 
 },{"_base":59,"dataObserver":84,"helpers/array":42,"jsonpatch":"jsonpatch","plugins":58}],86:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17878,7 +17877,7 @@ function parsePath(path) {
   };
 }
 
-//#
+//# 
 },{"../../helpers/array":42}],87:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -17990,7 +17989,7 @@ var htPersistentState = new HandsontablePersistentState();
 Handsontable.hooks.add('beforeInit', htPersistentState.init);
 Handsontable.hooks.add('afterUpdateSettings', htPersistentState.init);
 
-//#
+//# 
 },{"plugins":58}],88:[function(require,module,exports){
 "use strict";
 var $___46__46__47__46__46__47_helpers_47_dom_47_element__,
@@ -18098,7 +18097,7 @@ function init() {
 Handsontable.hooks.add('afterInit', init);
 Handsontable.hooks.add('afterUpdateSettings', init);
 
-//#
+//# 
 },{"helpers/dom/element":45,"renderers":91}],89:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18211,7 +18210,7 @@ var $TouchScroll = TouchScroll;
 ;
 registerPlugin('touchScroll', TouchScroll);
 
-//#
+//# 
 },{"_base":59,"helpers/dom/element":45,"plugins":58}],90:[function(require,module,exports){
 "use strict";
 var $___46__46__47__46__46__47_helpers_47_array__,
@@ -18561,7 +18560,7 @@ function removeExposedUndoRedoMethods(instance) {
 Handsontable.hooks.add('afterInit', init);
 Handsontable.hooks.add('afterUpdateSettings', init);
 
-//#
+//# 
 },{"helpers/array":42,"helpers/dom/event":46,"helpers/number":50,"helpers/object":51}],91:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18606,7 +18605,7 @@ function hasRenderer(rendererName) {
 }
 ;
 
-//#
+//# 
 },{"helpers/string":53}],92:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18648,7 +18647,7 @@ function cellDecorator(instance, TD, row, col, prop, value, cellProperties) {
   }
 }
 
-//#
+//# 
 },{"helpers/dom/element":45,"renderers":91}],93:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18705,7 +18704,7 @@ function autocompleteRenderer(instance, TD, row, col, prop, value, cellPropertie
 ;
 registerRenderer('autocomplete', autocompleteRenderer);
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"eventManager":41,"helpers/dom/element":45,"renderers":91}],94:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18864,7 +18863,7 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-//#
+//# 
 },{"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46,"helpers/string":53,"helpers/unicode":54,"renderers":91}],95:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18889,7 +18888,7 @@ function htmlRenderer(instance, TD, row, col, prop, value, cellProperties) {
 ;
 registerRenderer('html', htmlRenderer);
 
-//#
+//# 
 },{"helpers/dom/element":45,"renderers":91}],96:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18921,7 +18920,7 @@ function numericRenderer(instance, TD, row, col, prop, value, cellProperties) {
 ;
 registerRenderer('numeric', numericRenderer);
 
-//#
+//# 
 },{"helpers/dom/element":45,"helpers/number":50,"numeral":"numeral","renderers":91}],97:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18948,7 +18947,7 @@ function passwordRenderer(instance, TD, row, col, prop, value, cellProperties) {
 ;
 registerRenderer('password', passwordRenderer);
 
-//#
+//# 
 },{"helpers/dom/element":45,"renderers":91}],98:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -18991,7 +18990,7 @@ function textRenderer(instance, TD, row, col, prop, value, cellProperties) {
 ;
 registerRenderer('text', textRenderer);
 
-//#
+//# 
 },{"helpers/dom/element":45,"helpers/mixed":49,"renderers":91}],99:[function(require,module,exports){
 "use strict";
 (function(global) {
@@ -19387,7 +19386,7 @@ registerRenderer('text', textRenderer);
   $traceurRuntime.superSet = superSet;
 })();
 
-//#
+//# 
 },{}],100:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -19914,7 +19913,7 @@ TableView.prototype.destroy = function() {
 };
 ;
 
-//#
+//# 
 },{"3rdparty/walkontable/src/cell/coords":5,"3rdparty/walkontable/src/core":7,"3rdparty/walkontable/src/selection":18,"eventManager":41,"helpers/dom/element":45,"helpers/dom/event":46}],101:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -20139,7 +20138,7 @@ var GhostTable = function GhostTable(hotInstance) {
 Handsontable.utils = Handsontable.utils || {};
 Handsontable.utils.GhostTable = GhostTable;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/dom/element":45,"helpers/mixed":49,"helpers/number":50,"helpers/object":51}],102:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -20215,7 +20214,7 @@ function parseDelay(delay) {
 Handsontable.utils = Handsontable.utils || {};
 Handsontable.utils.Interval = Interval;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/feature":47,"helpers/mixed":49,"helpers/number":50,"helpers/object":51}],103:[function(require,module,exports){
 "use strict";
 var $__7;
@@ -20351,7 +20350,7 @@ var $SamplesGenerator = SamplesGenerator;
 Handsontable.utils = Handsontable.utils || {};
 Handsontable.utils.SamplesGenerator = SamplesGenerator;
 
-//#
+//# 
 },{"helpers/array":42,"helpers/dom/element":45,"helpers/mixed":49,"helpers/number":50,"helpers/object":51}],104:[function(require,module,exports){
 "use strict";
 var $___46__46__47_helpers_47_mixed__;
@@ -20386,7 +20385,7 @@ function process(value, callback) {
   };
 }
 
-//#
+//# 
 },{"helpers/mixed":49}],105:[function(require,module,exports){
 "use strict";
 var $__moment__,
@@ -20436,7 +20435,7 @@ var correctFormat = function correctFormat(value, dateFormat) {
   return date.format(dateFormat);
 };
 
-//#
+//# 
 },{"editors":29,"moment":"moment"}],106:[function(require,module,exports){
 "use strict";
 Handsontable.NumericValidator = function(value, callback) {
@@ -20452,7 +20451,7 @@ Handsontable.NumericValidator = function(value, callback) {
   }
 };
 
-//#
+//# 
 },{}],107:[function(require,module,exports){
 "use strict";
 var $__moment__,
@@ -20499,7 +20498,7 @@ Handsontable.TimeValidator = function(value, callback) {
   callback(valid);
 };
 
-//#
+//# 
 },{"editors":29,"moment":"moment"}],"SheetClip":[function(require,module,exports){
 "use strict";
 (function(global) {
@@ -20590,7 +20589,7 @@ Handsontable.TimeValidator = function(value, callback) {
   }
 }(window));
 
-//#
+//# 
 },{}],"autoResize":[function(require,module,exports){
 "use strict";
 function autoResize() {
@@ -20743,7 +20742,7 @@ if (typeof exports !== 'undefined') {
   module.exports = autoResize;
 }
 
-//#
+//# 
 },{}],"copyPaste":[function(require,module,exports){
 "use strict";
 var instance;
@@ -20937,7 +20936,7 @@ CopyPasteClass.prototype.hasBeenDestroyed = function() {
   return !this.refCounter;
 };
 
-//#
+//# 
 },{}],"es6collections":[function(require,module,exports){
 "use strict";
 (function(exports) {
@@ -21104,7 +21103,7 @@ CopyPasteClass.prototype.hasBeenDestroyed = function() {
   }
 })(typeof exports != 'undefined' && typeof global != 'undefined' ? global : window);
 
-//#
+//# 
 },{}],"jsonpatch":[function(require,module,exports){
 "use strict";
 var jsonpatch;
@@ -21558,15 +21557,15 @@ if (typeof exports !== "undefined") {
   exports.generate = jsonpatch.generate;
 }
 
-//#
+//# 
 },{}],"moment":[function(require,module,exports){
 //! moment.js
-//! version : 2.11.2
+//! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
 
-;(function (global, factory) {
+(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
     global.moment = factory()
@@ -21683,45 +21682,39 @@ if (typeof exports !== "undefined") {
         return m;
     }
 
-    function isUndefined(input) {
-        return input === void 0;
-    }
-
-    // Plugins that add properties should also add the key here (null value),
-    // so we can properly clone ourselves.
     var momentProperties = utils_hooks__hooks.momentProperties = [];
 
     function copyConfig(to, from) {
         var i, prop, val;
 
-        if (!isUndefined(from._isAMomentObject)) {
+        if (typeof from._isAMomentObject !== 'undefined') {
             to._isAMomentObject = from._isAMomentObject;
         }
-        if (!isUndefined(from._i)) {
+        if (typeof from._i !== 'undefined') {
             to._i = from._i;
         }
-        if (!isUndefined(from._f)) {
+        if (typeof from._f !== 'undefined') {
             to._f = from._f;
         }
-        if (!isUndefined(from._l)) {
+        if (typeof from._l !== 'undefined') {
             to._l = from._l;
         }
-        if (!isUndefined(from._strict)) {
+        if (typeof from._strict !== 'undefined') {
             to._strict = from._strict;
         }
-        if (!isUndefined(from._tzm)) {
+        if (typeof from._tzm !== 'undefined') {
             to._tzm = from._tzm;
         }
-        if (!isUndefined(from._isUTC)) {
+        if (typeof from._isUTC !== 'undefined') {
             to._isUTC = from._isUTC;
         }
-        if (!isUndefined(from._offset)) {
+        if (typeof from._offset !== 'undefined') {
             to._offset = from._offset;
         }
-        if (!isUndefined(from._pf)) {
+        if (typeof from._pf !== 'undefined') {
             to._pf = getParsingFlags(from);
         }
-        if (!isUndefined(from._locale)) {
+        if (typeof from._locale !== 'undefined') {
             to._locale = from._locale;
         }
 
@@ -21729,7 +21722,7 @@ if (typeof exports !== "undefined") {
             for (i in momentProperties) {
                 prop = momentProperties[i];
                 val = from[prop];
-                if (!isUndefined(val)) {
+                if (typeof val !== 'undefined') {
                     to[prop] = val;
                 }
             }
@@ -21776,7 +21769,6 @@ if (typeof exports !== "undefined") {
         return value;
     }
 
-    // compare two arrays, return the number of differences
     function compareArrays(array1, array2, dontConvert) {
         var len = Math.min(array1.length, array2.length),
             lengthDiff = Math.abs(array1.length - array2.length),
@@ -21794,7 +21786,6 @@ if (typeof exports !== "undefined") {
     function Locale() {
     }
 
-    // internal storage for locale config files
     var locales = {};
     var globalLocale;
 
@@ -21832,7 +21823,7 @@ if (typeof exports !== "undefined") {
     function loadLocale(name) {
         var oldLocale = null;
         // TODO: Find a better way to register and load all the locales in Node
-        if (!locales[name] && (typeof module !== 'undefined') &&
+        if (!locales[name] && typeof module !== 'undefined' &&
                 module && module.exports) {
             try {
                 oldLocale = globalLocale._abbr;
@@ -21851,7 +21842,7 @@ if (typeof exports !== "undefined") {
     function locale_locales__getSetGlobalLocale (key, values) {
         var data;
         if (key) {
-            if (isUndefined(values)) {
+            if (typeof values === 'undefined') {
                 data = locale_locales__getLocale(key);
             }
             else {
@@ -21936,10 +21927,6 @@ if (typeof exports !== "undefined") {
         return normalizedInput;
     }
 
-    function isFunction(input) {
-        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
-    }
-
     function makeGetSet (unit, keepTime) {
         return function (value) {
             if (value != null) {
@@ -21953,14 +21940,11 @@ if (typeof exports !== "undefined") {
     }
 
     function get_set__get (mom, unit) {
-        return mom.isValid() ?
-            mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
+        return mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]();
     }
 
     function get_set__set (mom, unit, value) {
-        if (mom.isValid()) {
-            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
-        }
+        return mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
     }
 
     // MOMENTS
@@ -21973,7 +21957,7 @@ if (typeof exports !== "undefined") {
             }
         } else {
             units = normalizeUnits(units);
-            if (isFunction(this[units])) {
+            if (typeof this[units] === 'function') {
                 return this[units](value);
             }
         }
@@ -21988,7 +21972,7 @@ if (typeof exports !== "undefined") {
             Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
     }
 
-    var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
+    var formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
 
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 
@@ -22084,8 +22068,6 @@ if (typeof exports !== "undefined") {
     var match4         = /\d{4}/;         //    0000 - 9999
     var match6         = /[+-]?\d{6}/;    // -999999 - 999999
     var match1to2      = /\d\d?/;         //       0 - 99
-    var match3to4      = /\d\d\d\d?/;     //     999 - 9999
-    var match5to6      = /\d\d\d\d\d\d?/; //   99999 - 999999
     var match1to3      = /\d{1,3}/;       //       0 - 999
     var match1to4      = /\d{1,4}/;       //       0 - 9999
     var match1to6      = /[+-]?\d{1,6}/;  // -999999 - 999999
@@ -22094,19 +22076,23 @@ if (typeof exports !== "undefined") {
     var matchSigned    = /[+-]?\d+/;      //    -inf - inf
 
     var matchOffset    = /Z|[+-]\d\d:?\d\d/gi; // +00:00 -00:00 +0000 -0000 or Z
-    var matchShortOffset = /Z|[+-]\d\d(?::?\d\d)?/gi; // +00 -00 +00:00 -00:00 +0000 -0000 or Z
 
     var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
 
     // any word (or two) characters or numbers including two/three word month in arabic.
-    // includes scottish gaelic two word and hyphenated months
     var matchWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i;
-
 
     var regexes = {};
 
+    function isFunction (sth) {
+        // https://github.com/moment/moment/issues/2325
+        return typeof sth === 'function' &&
+            Object.prototype.toString.call(sth) === '[object Function]';
+    }
+
+
     function addRegexToken (token, regex, strictRegex) {
-        regexes[token] = isFunction(regex) ? regex : function (isStrict, localeData) {
+        regexes[token] = isFunction(regex) ? regex : function (isStrict) {
             return (isStrict && strictRegex) ? strictRegex : regex;
         };
     }
@@ -22121,13 +22107,9 @@ if (typeof exports !== "undefined") {
 
     // Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
     function unescapeFormat(s) {
-        return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
+        return s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
             return p1 || p2 || p3 || p4;
-        }));
-    }
-
-    function regexEscape(s) {
-        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        }).replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
 
     var tokens = {};
@@ -22167,8 +22149,6 @@ if (typeof exports !== "undefined") {
     var MINUTE = 4;
     var SECOND = 5;
     var MILLISECOND = 6;
-    var WEEK = 7;
-    var WEEKDAY = 8;
 
     function daysInMonth(year, month) {
         return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
@@ -22196,12 +22176,8 @@ if (typeof exports !== "undefined") {
 
     addRegexToken('M',    match1to2);
     addRegexToken('MM',   match1to2, match2);
-    addRegexToken('MMM',  function (isStrict, locale) {
-        return locale.monthsShortRegex(isStrict);
-    });
-    addRegexToken('MMMM', function (isStrict, locale) {
-        return locale.monthsRegex(isStrict);
-    });
+    addRegexToken('MMM',  matchWord);
+    addRegexToken('MMMM', matchWord);
 
     addParseToken(['M', 'MM'], function (input, array) {
         array[MONTH] = toInt(input) - 1;
@@ -22219,17 +22195,14 @@ if (typeof exports !== "undefined") {
 
     // LOCALES
 
-    var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/;
     var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
-    function localeMonths (m, format) {
-        return isArray(this._months) ? this._months[m.month()] :
-            this._months[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+    function localeMonths (m) {
+        return this._months[m.month()];
     }
 
     var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
-    function localeMonthsShort (m, format) {
-        return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
-            this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+    function localeMonthsShort (m) {
+        return this._monthsShort[m.month()];
     }
 
     function localeMonthsParse (monthName, format, strict) {
@@ -22268,11 +22241,6 @@ if (typeof exports !== "undefined") {
     function setMonth (mom, value) {
         var dayOfMonth;
 
-        if (!mom.isValid()) {
-            // No op
-            return mom;
-        }
-
         // TODO: Move this out of here!
         if (typeof value === 'string') {
             value = mom.localeData().monthsParse(value);
@@ -22301,72 +22269,6 @@ if (typeof exports !== "undefined") {
         return daysInMonth(this.year(), this.month());
     }
 
-    var defaultMonthsShortRegex = matchWord;
-    function monthsShortRegex (isStrict) {
-        if (this._monthsParseExact) {
-            if (!hasOwnProp(this, '_monthsRegex')) {
-                computeMonthsParse.call(this);
-            }
-            if (isStrict) {
-                return this._monthsShortStrictRegex;
-            } else {
-                return this._monthsShortRegex;
-            }
-        } else {
-            return this._monthsShortStrictRegex && isStrict ?
-                this._monthsShortStrictRegex : this._monthsShortRegex;
-        }
-    }
-
-    var defaultMonthsRegex = matchWord;
-    function monthsRegex (isStrict) {
-        if (this._monthsParseExact) {
-            if (!hasOwnProp(this, '_monthsRegex')) {
-                computeMonthsParse.call(this);
-            }
-            if (isStrict) {
-                return this._monthsStrictRegex;
-            } else {
-                return this._monthsRegex;
-            }
-        } else {
-            return this._monthsStrictRegex && isStrict ?
-                this._monthsStrictRegex : this._monthsRegex;
-        }
-    }
-
-    function computeMonthsParse () {
-        function cmpLenRev(a, b) {
-            return b.length - a.length;
-        }
-
-        var shortPieces = [], longPieces = [], mixedPieces = [],
-            i, mom;
-        for (i = 0; i < 12; i++) {
-            // make the regex if we don't have it already
-            mom = create_utc__createUTC([2000, i]);
-            shortPieces.push(this.monthsShort(mom, ''));
-            longPieces.push(this.months(mom, ''));
-            mixedPieces.push(this.months(mom, ''));
-            mixedPieces.push(this.monthsShort(mom, ''));
-        }
-        // Sorting makes sure if one month (or abbr) is a prefix of another it
-        // will match the longer piece.
-        shortPieces.sort(cmpLenRev);
-        longPieces.sort(cmpLenRev);
-        mixedPieces.sort(cmpLenRev);
-        for (i = 0; i < 12; i++) {
-            shortPieces[i] = regexEscape(shortPieces[i]);
-            longPieces[i] = regexEscape(longPieces[i]);
-            mixedPieces[i] = regexEscape(mixedPieces[i]);
-        }
-
-        this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
-        this._monthsShortRegex = this._monthsRegex;
-        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')$', 'i');
-        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')$', 'i');
-    }
-
     function checkOverflow (m) {
         var overflow;
         var a = m._a;
@@ -22384,12 +22286,6 @@ if (typeof exports !== "undefined") {
             if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
                 overflow = DATE;
             }
-            if (getParsingFlags(m)._overflowWeeks && overflow === -1) {
-                overflow = WEEK;
-            }
-            if (getParsingFlags(m)._overflowWeekday && overflow === -1) {
-                overflow = WEEKDAY;
-            }
 
             getParsingFlags(m).overflow = overflow;
         }
@@ -22398,8 +22294,7 @@ if (typeof exports !== "undefined") {
     }
 
     function warn(msg) {
-        if (utils_hooks__hooks.suppressDeprecationWarnings === false &&
-                (typeof console !==  'undefined') && console.warn) {
+        if (utils_hooks__hooks.suppressDeprecationWarnings === false && typeof console !== 'undefined' && console.warn) {
             console.warn('Deprecation warning: ' + msg);
         }
     }
@@ -22409,7 +22304,7 @@ if (typeof exports !== "undefined") {
 
         return extend(function () {
             if (firstTime) {
-                warn(msg + '\nArguments: ' + Array.prototype.slice.call(arguments).join(', ') + '\n' + (new Error()).stack);
+                warn(msg + '\n' + (new Error()).stack);
                 firstTime = false;
             }
             return fn.apply(this, arguments);
@@ -22427,39 +22322,22 @@ if (typeof exports !== "undefined") {
 
     utils_hooks__hooks.suppressDeprecationWarnings = false;
 
-    // iso 8601 regex
-    // 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
-    var extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
-    var basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
-
-    var tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
+    var from_string__isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
 
     var isoDates = [
-        ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/],
-        ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/],
-        ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/],
-        ['GGGG-[W]WW', /\d{4}-W\d\d/, false],
-        ['YYYY-DDD', /\d{4}-\d{3}/],
-        ['YYYY-MM', /\d{4}-\d\d/, false],
-        ['YYYYYYMMDD', /[+-]\d{10}/],
-        ['YYYYMMDD', /\d{8}/],
-        // YYYYMM is NOT allowed by the standard
-        ['GGGG[W]WWE', /\d{4}W\d{3}/],
-        ['GGGG[W]WW', /\d{4}W\d{2}/, false],
-        ['YYYYDDD', /\d{7}/]
+        ['YYYYYY-MM-DD', /[+-]\d{6}-\d{2}-\d{2}/],
+        ['YYYY-MM-DD', /\d{4}-\d{2}-\d{2}/],
+        ['GGGG-[W]WW-E', /\d{4}-W\d{2}-\d/],
+        ['GGGG-[W]WW', /\d{4}-W\d{2}/],
+        ['YYYY-DDD', /\d{4}-\d{3}/]
     ];
 
     // iso time formats and regexes
     var isoTimes = [
-        ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
-        ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/],
-        ['HH:mm:ss', /\d\d:\d\d:\d\d/],
-        ['HH:mm', /\d\d:\d\d/],
-        ['HHmmss.SSSS', /\d\d\d\d\d\d\.\d+/],
-        ['HHmmss,SSSS', /\d\d\d\d\d\d,\d+/],
-        ['HHmmss', /\d\d\d\d\d\d/],
-        ['HHmm', /\d\d\d\d/],
-        ['HH', /\d\d/]
+        ['HH:mm:ss.SSSS', /(T| )\d\d:\d\d:\d\d\.\d+/],
+        ['HH:mm:ss', /(T| )\d\d:\d\d:\d\d/],
+        ['HH:mm', /(T| )\d\d:\d\d/],
+        ['HH', /(T| )\d\d/]
     ];
 
     var aspNetJsonRegex = /^\/?Date\((\-?\d+)/i;
@@ -22468,49 +22346,26 @@ if (typeof exports !== "undefined") {
     function configFromISO(config) {
         var i, l,
             string = config._i,
-            match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
-            allowTime, dateFormat, timeFormat, tzFormat;
+            match = from_string__isoRegex.exec(string);
 
         if (match) {
             getParsingFlags(config).iso = true;
-
             for (i = 0, l = isoDates.length; i < l; i++) {
-                if (isoDates[i][1].exec(match[1])) {
-                    dateFormat = isoDates[i][0];
-                    allowTime = isoDates[i][2] !== false;
+                if (isoDates[i][1].exec(string)) {
+                    config._f = isoDates[i][0];
                     break;
                 }
             }
-            if (dateFormat == null) {
-                config._isValid = false;
-                return;
-            }
-            if (match[3]) {
-                for (i = 0, l = isoTimes.length; i < l; i++) {
-                    if (isoTimes[i][1].exec(match[3])) {
-                        // match[2] should be 'T' or space
-                        timeFormat = (match[2] || ' ') + isoTimes[i][0];
-                        break;
-                    }
-                }
-                if (timeFormat == null) {
-                    config._isValid = false;
-                    return;
+            for (i = 0, l = isoTimes.length; i < l; i++) {
+                if (isoTimes[i][1].exec(string)) {
+                    // match[6] should be 'T' or space
+                    config._f += (match[6] || ' ') + isoTimes[i][0];
+                    break;
                 }
             }
-            if (!allowTime && timeFormat != null) {
-                config._isValid = false;
-                return;
+            if (string.match(matchOffset)) {
+                config._f += 'Z';
             }
-            if (match[4]) {
-                if (tzRegex.exec(match[4])) {
-                    tzFormat = 'Z';
-                } else {
-                    config._isValid = false;
-                    return;
-                }
-            }
-            config._f = dateFormat + (timeFormat || '') + (tzFormat || '');
             configFromStringAndFormat(config);
         } else {
             config._isValid = false;
@@ -22548,8 +22403,8 @@ if (typeof exports !== "undefined") {
         //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
         var date = new Date(y, m, d, h, M, s, ms);
 
-        //the date constructor remaps years 0-99 to 1900-1999
-        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
+        //the date constructor doesn't accept years < 1970
+        if (y < 1970) {
             date.setFullYear(y);
         }
         return date;
@@ -22557,20 +22412,11 @@ if (typeof exports !== "undefined") {
 
     function createUTCDate (y) {
         var date = new Date(Date.UTC.apply(null, arguments));
-
-        //the Date.UTC function remaps years 0-99 to 1900-1999
-        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
+        if (y < 1970) {
             date.setUTCFullYear(y);
         }
         return date;
     }
-
-    // FORMATTING
-
-    addFormatToken('Y', 0, 0, function () {
-        var y = this.year();
-        return y <= 9999 ? '' + y : '+' + y;
-    });
 
     addFormatToken(0, ['YY', 2], 0, function () {
         return this.year() % 100;
@@ -22599,9 +22445,6 @@ if (typeof exports !== "undefined") {
     addParseToken('YY', function (input, array) {
         array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
     });
-    addParseToken('Y', function (input, array) {
-        array[YEAR] = parseInt(input, 10);
-    });
 
     // HELPERS
 
@@ -22627,66 +22470,124 @@ if (typeof exports !== "undefined") {
         return isLeapYear(this.year());
     }
 
-    // start-of-first-week - start-of-year
-    function firstWeekOffset(year, dow, doy) {
-        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-            fwd = 7 + dow - doy,
-            // first-week day local weekday -- which local weekday is fwd
-            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+    addFormatToken('w', ['ww', 2], 'wo', 'week');
+    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
 
-        return -fwdlw + fwd - 1;
+    // ALIASES
+
+    addUnitAlias('week', 'w');
+    addUnitAlias('isoWeek', 'W');
+
+    // PARSING
+
+    addRegexToken('w',  match1to2);
+    addRegexToken('ww', match1to2, match2);
+    addRegexToken('W',  match1to2);
+    addRegexToken('WW', match1to2, match2);
+
+    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+        week[token.substr(0, 1)] = toInt(input);
+    });
+
+    // HELPERS
+
+    // firstDayOfWeek       0 = sun, 6 = sat
+    //                      the day of the week that starts the week
+    //                      (usually sunday or monday)
+    // firstDayOfWeekOfYear 0 = sun, 6 = sat
+    //                      the first week is the week that contains the first
+    //                      of this day of the week
+    //                      (eg. ISO weeks use thursday (4))
+    function weekOfYear(mom, firstDayOfWeek, firstDayOfWeekOfYear) {
+        var end = firstDayOfWeekOfYear - firstDayOfWeek,
+            daysToDayOfWeek = firstDayOfWeekOfYear - mom.day(),
+            adjustedMoment;
+
+
+        if (daysToDayOfWeek > end) {
+            daysToDayOfWeek -= 7;
+        }
+
+        if (daysToDayOfWeek < end - 7) {
+            daysToDayOfWeek += 7;
+        }
+
+        adjustedMoment = local__createLocal(mom).add(daysToDayOfWeek, 'd');
+        return {
+            week: Math.ceil(adjustedMoment.dayOfYear() / 7),
+            year: adjustedMoment.year()
+        };
     }
+
+    // LOCALES
+
+    function localeWeek (mom) {
+        return weekOfYear(mom, this._week.dow, this._week.doy).week;
+    }
+
+    var defaultLocaleWeek = {
+        dow : 0, // Sunday is the first day of the week.
+        doy : 6  // The week that contains Jan 1st is the first week of the year.
+    };
+
+    function localeFirstDayOfWeek () {
+        return this._week.dow;
+    }
+
+    function localeFirstDayOfYear () {
+        return this._week.doy;
+    }
+
+    // MOMENTS
+
+    function getSetWeek (input) {
+        var week = this.localeData().week(this);
+        return input == null ? week : this.add((input - week) * 7, 'd');
+    }
+
+    function getSetISOWeek (input) {
+        var week = weekOfYear(this, 1, 4).week;
+        return input == null ? week : this.add((input - week) * 7, 'd');
+    }
+
+    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
+
+    // ALIASES
+
+    addUnitAlias('dayOfYear', 'DDD');
+
+    // PARSING
+
+    addRegexToken('DDD',  match1to3);
+    addRegexToken('DDDD', match3);
+    addParseToken(['DDD', 'DDDD'], function (input, array, config) {
+        config._dayOfYear = toInt(input);
+    });
+
+    // HELPERS
 
     //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
-    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
-        var localWeekday = (7 + weekday - dow) % 7,
-            weekOffset = firstWeekOffset(year, dow, doy),
-            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
-            resYear, resDayOfYear;
-
-        if (dayOfYear <= 0) {
-            resYear = year - 1;
-            resDayOfYear = daysInYear(resYear) + dayOfYear;
-        } else if (dayOfYear > daysInYear(year)) {
-            resYear = year + 1;
-            resDayOfYear = dayOfYear - daysInYear(year);
-        } else {
-            resYear = year;
-            resDayOfYear = dayOfYear;
+    function dayOfYearFromWeeks(year, week, weekday, firstDayOfWeekOfYear, firstDayOfWeek) {
+        var week1Jan = 6 + firstDayOfWeek - firstDayOfWeekOfYear, janX = createUTCDate(year, 0, 1 + week1Jan), d = janX.getUTCDay(), dayOfYear;
+        if (d < firstDayOfWeek) {
+            d += 7;
         }
 
+        weekday = weekday != null ? 1 * weekday : firstDayOfWeek;
+
+        dayOfYear = 1 + week1Jan + 7 * (week - 1) - d + weekday;
+
         return {
-            year: resYear,
-            dayOfYear: resDayOfYear
+            year: dayOfYear > 0 ? year : year - 1,
+            dayOfYear: dayOfYear > 0 ?  dayOfYear : daysInYear(year - 1) + dayOfYear
         };
     }
 
-    function weekOfYear(mom, dow, doy) {
-        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
-            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
-            resWeek, resYear;
+    // MOMENTS
 
-        if (week < 1) {
-            resYear = mom.year() - 1;
-            resWeek = week + weeksInYear(resYear, dow, doy);
-        } else if (week > weeksInYear(mom.year(), dow, doy)) {
-            resWeek = week - weeksInYear(mom.year(), dow, doy);
-            resYear = mom.year() + 1;
-        } else {
-            resYear = mom.year();
-            resWeek = week;
-        }
-
-        return {
-            week: resWeek,
-            year: resYear
-        };
-    }
-
-    function weeksInYear(year, dow, doy) {
-        var weekOffset = firstWeekOffset(year, dow, doy),
-            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
-        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
+    function getSetDayOfYear (input) {
+        var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
+        return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
     }
 
     // Pick the first defined of two or three arguments.
@@ -22701,12 +22602,11 @@ if (typeof exports !== "undefined") {
     }
 
     function currentDateArray(config) {
-        // hooks is actually the exported moment object
-        var nowValue = new Date(utils_hooks__hooks.now());
+        var now = new Date();
         if (config._useUTC) {
-            return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
+            return [now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()];
         }
-        return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
+        return [now.getFullYear(), now.getMonth(), now.getDate()];
     }
 
     // convert an array to a date.
@@ -22776,7 +22676,7 @@ if (typeof exports !== "undefined") {
     }
 
     function dayOfYearFromWeekInfo(config) {
-        var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+        var w, weekYear, week, weekday, dow, doy, temp;
 
         w = config._w;
         if (w.GG != null || w.W != null || w.E != null) {
@@ -22790,9 +22690,6 @@ if (typeof exports !== "undefined") {
             weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(local__createLocal(), 1, 4).year);
             week = defaults(w.W, 1);
             weekday = defaults(w.E, 1);
-            if (weekday < 1 || weekday > 7) {
-                weekdayOverflow = true;
-            }
         } else {
             dow = config._locale._week.dow;
             doy = config._locale._week.doy;
@@ -22803,32 +22700,23 @@ if (typeof exports !== "undefined") {
             if (w.d != null) {
                 // weekday -- low day numbers are considered next week
                 weekday = w.d;
-                if (weekday < 0 || weekday > 6) {
-                    weekdayOverflow = true;
+                if (weekday < dow) {
+                    ++week;
                 }
             } else if (w.e != null) {
                 // local weekday -- counting starts from begining of week
                 weekday = w.e + dow;
-                if (w.e < 0 || w.e > 6) {
-                    weekdayOverflow = true;
-                }
             } else {
                 // default to begining of week
                 weekday = dow;
             }
         }
-        if (week < 1 || week > weeksInYear(weekYear, dow, doy)) {
-            getParsingFlags(config)._overflowWeeks = true;
-        } else if (weekdayOverflow != null) {
-            getParsingFlags(config)._overflowWeekday = true;
-        } else {
-            temp = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
-            config._a[YEAR] = temp.year;
-            config._dayOfYear = temp.dayOfYear;
-        }
+        temp = dayOfYearFromWeeks(weekYear, week, weekday, doy, dow);
+
+        config._a[YEAR] = temp.year;
+        config._dayOfYear = temp.dayOfYear;
     }
 
-    // constant that refers to the ISO standard
     utils_hooks__hooks.ISO_8601 = function () {};
 
     // date from string and format string
@@ -22853,8 +22741,6 @@ if (typeof exports !== "undefined") {
         for (i = 0; i < tokens.length; i++) {
             token = tokens[i];
             parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
-            // console.log('token', token, 'parsedInput', parsedInput,
-            //         'regex', getParseRegexForToken(token, config));
             if (parsedInput) {
                 skipped = string.substr(0, string.indexOf(parsedInput));
                 if (skipped.length > 0) {
@@ -22923,7 +22809,6 @@ if (typeof exports !== "undefined") {
         }
     }
 
-    // date from string and array of format strings
     function configFromStringAndArray(config) {
         var tempConfig,
             bestMoment,
@@ -22974,9 +22859,7 @@ if (typeof exports !== "undefined") {
         }
 
         var i = normalizeObjectUnits(config._i);
-        config._a = map([i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond], function (obj) {
-            return obj && parseInt(obj, 10);
-        });
+        config._a = [i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond];
 
         configFromArray(config);
     }
@@ -23018,17 +22901,13 @@ if (typeof exports !== "undefined") {
             configFromInput(config);
         }
 
-        if (!valid__isValid(config)) {
-            config._d = null;
-        }
-
         return config;
     }
 
     function configFromInput(config) {
         var input = config._i;
         if (input === undefined) {
-            config._d = new Date(utils_hooks__hooks.now());
+            config._d = new Date();
         } else if (isDate(input)) {
             config._d = new Date(+input);
         } else if (typeof input === 'string') {
@@ -23075,11 +22954,7 @@ if (typeof exports !== "undefined") {
          'moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
          function () {
              var other = local__createLocal.apply(null, arguments);
-             if (this.isValid() && other.isValid()) {
-                 return other < this ? this : other;
-             } else {
-                 return valid__createInvalid();
-             }
+             return other < this ? this : other;
          }
      );
 
@@ -23087,11 +22962,7 @@ if (typeof exports !== "undefined") {
         'moment().max is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
         function () {
             var other = local__createLocal.apply(null, arguments);
-            if (this.isValid() && other.isValid()) {
-                return other > this ? this : other;
-            } else {
-                return valid__createInvalid();
-            }
+            return other > this ? this : other;
         }
     );
 
@@ -23129,10 +23000,6 @@ if (typeof exports !== "undefined") {
 
         return pickBy('isAfter', args);
     }
-
-    var now = function () {
-        return Date.now ? Date.now() : +(new Date());
-    };
 
     function Duration (duration) {
         var normalizedInput = normalizeObjectUnits(duration),
@@ -23173,8 +23040,6 @@ if (typeof exports !== "undefined") {
         return obj instanceof Duration;
     }
 
-    // FORMATTING
-
     function offset (token, separator) {
         addFormatToken(token, 0, 0, function () {
             var offset = this.utcOffset();
@@ -23192,11 +23057,11 @@ if (typeof exports !== "undefined") {
 
     // PARSING
 
-    addRegexToken('Z',  matchShortOffset);
-    addRegexToken('ZZ', matchShortOffset);
+    addRegexToken('Z',  matchOffset);
+    addRegexToken('ZZ', matchOffset);
     addParseToken(['Z', 'ZZ'], function (input, array, config) {
         config._useUTC = true;
-        config._tzm = offsetFromString(matchShortOffset, input);
+        config._tzm = offsetFromString(input);
     });
 
     // HELPERS
@@ -23206,8 +23071,8 @@ if (typeof exports !== "undefined") {
     // '-1530'  > ['-15', '30']
     var chunkOffset = /([\+\-]|\d\d)/gi;
 
-    function offsetFromString(matcher, string) {
-        var matches = ((string || '').match(matcher) || []);
+    function offsetFromString(string) {
+        var matches = ((string || '').match(matchOffset) || []);
         var chunk   = matches[matches.length - 1] || [];
         var parts   = (chunk + '').match(chunkOffset) || ['-', 0, 0];
         var minutes = +(parts[1] * 60) + toInt(parts[2]);
@@ -23257,13 +23122,11 @@ if (typeof exports !== "undefined") {
     function getSetOffset (input, keepLocalTime) {
         var offset = this._offset || 0,
             localAdjust;
-        if (!this.isValid()) {
-            return input != null ? this : NaN;
-        }
         if (input != null) {
             if (typeof input === 'string') {
-                input = offsetFromString(matchShortOffset, input);
-            } else if (Math.abs(input) < 16) {
+                input = offsetFromString(input);
+            }
+            if (Math.abs(input) < 16) {
                 input = input * 60;
             }
             if (!this._isUTC && keepLocalTime) {
@@ -23323,15 +23186,12 @@ if (typeof exports !== "undefined") {
         if (this._tzm) {
             this.utcOffset(this._tzm);
         } else if (typeof this._i === 'string') {
-            this.utcOffset(offsetFromString(matchOffset, this._i));
+            this.utcOffset(offsetFromString(this._i));
         }
         return this;
     }
 
     function hasAlignedHourOffset (input) {
-        if (!this.isValid()) {
-            return false;
-        }
         input = input ? local__createLocal(input).utcOffset() : 0;
 
         return (this.utcOffset() - input) % 60 === 0;
@@ -23345,7 +23205,7 @@ if (typeof exports !== "undefined") {
     }
 
     function isDaylightSavingTimeShifted () {
-        if (!isUndefined(this._isDSTShifted)) {
+        if (typeof this._isDSTShifted !== 'undefined') {
             return this._isDSTShifted;
         }
 
@@ -23366,23 +23226,22 @@ if (typeof exports !== "undefined") {
     }
 
     function isLocal () {
-        return this.isValid() ? !this._isUTC : false;
+        return !this._isUTC;
     }
 
     function isUtcOffset () {
-        return this.isValid() ? this._isUTC : false;
+        return this._isUTC;
     }
 
     function isUtc () {
-        return this.isValid() ? this._isUTC && this._offset === 0 : false;
+        return this._isUTC && this._offset === 0;
     }
 
-    // ASP.NET json date format regex
-    var aspNetRegex = /^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?\d*)?$/;
+    var aspNetRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/;
 
     // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
     // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
-    var isoRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/;
+    var create__isoRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/;
 
     function create__createDuration (input, key) {
         var duration = input,
@@ -23415,7 +23274,7 @@ if (typeof exports !== "undefined") {
                 s  : toInt(match[SECOND])      * sign,
                 ms : toInt(match[MILLISECOND]) * sign
             };
-        } else if (!!(match = isoRegex.exec(input))) {
+        } else if (!!(match = create__isoRegex.exec(input))) {
             sign = (match[1] === '-') ? -1 : 1;
             duration = {
                 y : parseIso(match[2], sign),
@@ -23472,10 +23331,6 @@ if (typeof exports !== "undefined") {
 
     function momentsDifference(base, other) {
         var res;
-        if (!(base.isValid() && other.isValid())) {
-            return {milliseconds: 0, months: 0};
-        }
-
         other = cloneWithOffset(other, base);
         if (base.isBefore(other)) {
             res = positiveMomentsDifference(base, other);
@@ -23488,7 +23343,6 @@ if (typeof exports !== "undefined") {
         return res;
     }
 
-    // TODO: remove 'name' arg after deprecation is removed
     function createAdder(direction, name) {
         return function (val, period) {
             var dur, tmp;
@@ -23509,12 +23363,6 @@ if (typeof exports !== "undefined") {
         var milliseconds = duration._milliseconds,
             days = duration._days,
             months = duration._months;
-
-        if (!mom.isValid()) {
-            // No op
-            return;
-        }
-
         updateOffset = updateOffset == null ? true : updateOffset;
 
         if (milliseconds) {
@@ -23546,10 +23394,7 @@ if (typeof exports !== "undefined") {
                 diff < 1 ? 'sameDay' :
                 diff < 2 ? 'nextDay' :
                 diff < 7 ? 'nextWeek' : 'sameElse';
-
-        var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
-
-        return this.format(output || this.localeData().calendar(format, this, local__createLocal(now)));
+        return this.format(formats && formats[format] || this.localeData().calendar(format, this, local__createLocal(now)));
     }
 
     function clone () {
@@ -23557,28 +23402,26 @@ if (typeof exports !== "undefined") {
     }
 
     function isAfter (input, units) {
-        var localInput = isMoment(input) ? input : local__createLocal(input);
-        if (!(this.isValid() && localInput.isValid())) {
-            return false;
-        }
-        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+        var inputMs;
+        units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
         if (units === 'millisecond') {
-            return +this > +localInput;
+            input = isMoment(input) ? input : local__createLocal(input);
+            return +this > +input;
         } else {
-            return +localInput < +this.clone().startOf(units);
+            inputMs = isMoment(input) ? +input : +local__createLocal(input);
+            return inputMs < +this.clone().startOf(units);
         }
     }
 
     function isBefore (input, units) {
-        var localInput = isMoment(input) ? input : local__createLocal(input);
-        if (!(this.isValid() && localInput.isValid())) {
-            return false;
-        }
-        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+        var inputMs;
+        units = normalizeUnits(typeof units !== 'undefined' ? units : 'millisecond');
         if (units === 'millisecond') {
-            return +this < +localInput;
+            input = isMoment(input) ? input : local__createLocal(input);
+            return +this < +input;
         } else {
-            return +this.clone().endOf(units) < +localInput;
+            inputMs = isMoment(input) ? +input : +local__createLocal(input);
+            return +this.clone().endOf(units) < inputMs;
         }
     }
 
@@ -23587,44 +23430,21 @@ if (typeof exports !== "undefined") {
     }
 
     function isSame (input, units) {
-        var localInput = isMoment(input) ? input : local__createLocal(input),
-            inputMs;
-        if (!(this.isValid() && localInput.isValid())) {
-            return false;
-        }
+        var inputMs;
         units = normalizeUnits(units || 'millisecond');
         if (units === 'millisecond') {
-            return +this === +localInput;
+            input = isMoment(input) ? input : local__createLocal(input);
+            return +this === +input;
         } else {
-            inputMs = +localInput;
+            inputMs = +local__createLocal(input);
             return +(this.clone().startOf(units)) <= inputMs && inputMs <= +(this.clone().endOf(units));
         }
     }
 
-    function isSameOrAfter (input, units) {
-        return this.isSame(input, units) || this.isAfter(input,units);
-    }
-
-    function isSameOrBefore (input, units) {
-        return this.isSame(input, units) || this.isBefore(input,units);
-    }
-
     function diff (input, units, asFloat) {
-        var that,
-            zoneDelta,
+        var that = cloneWithOffset(input, this),
+            zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4,
             delta, output;
-
-        if (!this.isValid()) {
-            return NaN;
-        }
-
-        that = cloneWithOffset(input, this);
-
-        if (!that.isValid()) {
-            return NaN;
-        }
-
-        zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4;
 
         units = normalizeUnits(units);
 
@@ -23676,7 +23496,7 @@ if (typeof exports !== "undefined") {
     function moment_format__toISOString () {
         var m = this.clone().utc();
         if (0 < m.year() && m.year() <= 9999) {
-            if (isFunction(Date.prototype.toISOString)) {
+            if ('function' === typeof Date.prototype.toISOString) {
                 // native implementation is ~50x faster, use it when we can
                 return this.toDate().toISOString();
             } else {
@@ -23693,13 +23513,10 @@ if (typeof exports !== "undefined") {
     }
 
     function from (time, withoutSuffix) {
-        if (this.isValid() &&
-                ((isMoment(time) && time.isValid()) ||
-                 local__createLocal(time).isValid())) {
-            return create__createDuration({to: this, from: time}).locale(this.locale()).humanize(!withoutSuffix);
-        } else {
+        if (!this.isValid()) {
             return this.localeData().invalidDate();
         }
+        return create__createDuration({to: this, from: time}).locale(this.locale()).humanize(!withoutSuffix);
     }
 
     function fromNow (withoutSuffix) {
@@ -23707,22 +23524,16 @@ if (typeof exports !== "undefined") {
     }
 
     function to (time, withoutSuffix) {
-        if (this.isValid() &&
-                ((isMoment(time) && time.isValid()) ||
-                 local__createLocal(time).isValid())) {
-            return create__createDuration({from: this, to: time}).locale(this.locale()).humanize(!withoutSuffix);
-        } else {
+        if (!this.isValid()) {
             return this.localeData().invalidDate();
         }
+        return create__createDuration({from: this, to: time}).locale(this.locale()).humanize(!withoutSuffix);
     }
 
     function toNow (withoutSuffix) {
         return this.to(local__createLocal(), withoutSuffix);
     }
 
-    // If passed a locale key, it will set the locale for this
-    // instance.  Otherwise, it will return the locale configuration
-    // variables for this instance.
     function locale (key) {
         var newLocaleData;
 
@@ -23833,11 +23644,6 @@ if (typeof exports !== "undefined") {
         };
     }
 
-    function toJSON () {
-        // JSON.stringify(new Date(NaN)) === 'null'
-        return this.isValid() ? this.toISOString() : 'null';
-    }
-
     function moment_valid__isValid () {
         return valid__isValid(this);
     }
@@ -23849,18 +23655,6 @@ if (typeof exports !== "undefined") {
     function invalidAt () {
         return getParsingFlags(this).overflow;
     }
-
-    function creationData() {
-        return {
-            input: this._i,
-            format: this._f,
-            locale: this._locale,
-            isUTC: this._isUTC,
-            strict: this._strict
-        };
-    }
-
-    // FORMATTING
 
     addFormatToken(0, ['gg', 2], 0, function () {
         return this.weekYear() % 100;
@@ -23903,20 +23697,22 @@ if (typeof exports !== "undefined") {
         week[token] = utils_hooks__hooks.parseTwoDigitYear(input);
     });
 
+    // HELPERS
+
+    function weeksInYear(year, dow, doy) {
+        return weekOfYear(local__createLocal([year, 11, 31 + dow - doy]), dow, doy).week;
+    }
+
     // MOMENTS
 
     function getSetWeekYear (input) {
-        return getSetWeekYearHelper.call(this,
-                input,
-                this.week(),
-                this.weekday(),
-                this.localeData()._week.dow,
-                this.localeData()._week.doy);
+        var year = weekOfYear(this, this.localeData()._week.dow, this.localeData()._week.doy).year;
+        return input == null ? year : this.add((input - year), 'y');
     }
 
     function getSetISOWeekYear (input) {
-        return getSetWeekYearHelper.call(this,
-                input, this.isoWeek(), this.isoWeekday(), 1, 4);
+        var year = weekOfYear(this, 1, 4).year;
+        return input == null ? year : this.add((input - year), 'y');
     }
 
     function getISOWeeksInYear () {
@@ -23928,33 +23724,7 @@ if (typeof exports !== "undefined") {
         return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
     }
 
-    function getSetWeekYearHelper(input, week, weekday, dow, doy) {
-        var weeksTarget;
-        if (input == null) {
-            return weekOfYear(this, dow, doy).year;
-        } else {
-            weeksTarget = weeksInYear(input, dow, doy);
-            if (week > weeksTarget) {
-                week = weeksTarget;
-            }
-            return setWeekAll.call(this, input, week, weekday, dow, doy);
-        }
-    }
-
-    function setWeekAll(weekYear, week, weekday, dow, doy) {
-        var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
-            date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
-
-        // console.log("got", weekYear, week, weekday, "set", date.toISOString());
-        this.year(date.getUTCFullYear());
-        this.month(date.getUTCMonth());
-        this.date(date.getUTCDate());
-        return this;
-    }
-
-    // FORMATTING
-
-    addFormatToken('Q', 0, 'Qo', 'quarter');
+    addFormatToken('Q', 0, 0, 'quarter');
 
     // ALIASES
 
@@ -23972,62 +23742,6 @@ if (typeof exports !== "undefined") {
     function getSetQuarter (input) {
         return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
     }
-
-    // FORMATTING
-
-    addFormatToken('w', ['ww', 2], 'wo', 'week');
-    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
-
-    // ALIASES
-
-    addUnitAlias('week', 'w');
-    addUnitAlias('isoWeek', 'W');
-
-    // PARSING
-
-    addRegexToken('w',  match1to2);
-    addRegexToken('ww', match1to2, match2);
-    addRegexToken('W',  match1to2);
-    addRegexToken('WW', match1to2, match2);
-
-    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
-        week[token.substr(0, 1)] = toInt(input);
-    });
-
-    // HELPERS
-
-    // LOCALES
-
-    function localeWeek (mom) {
-        return weekOfYear(mom, this._week.dow, this._week.doy).week;
-    }
-
-    var defaultLocaleWeek = {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 6  // The week that contains Jan 1st is the first week of the year.
-    };
-
-    function localeFirstDayOfWeek () {
-        return this._week.dow;
-    }
-
-    function localeFirstDayOfYear () {
-        return this._week.doy;
-    }
-
-    // MOMENTS
-
-    function getSetWeek (input) {
-        var week = this.localeData().week(this);
-        return input == null ? week : this.add((input - week) * 7, 'd');
-    }
-
-    function getSetISOWeek (input) {
-        var week = weekOfYear(this, 1, 4).week;
-        return input == null ? week : this.add((input - week) * 7, 'd');
-    }
-
-    // FORMATTING
 
     addFormatToken('D', ['DD', 2], 'Do', 'date');
 
@@ -24051,8 +23765,6 @@ if (typeof exports !== "undefined") {
     // MOMENTS
 
     var getSetDayOfMonth = makeGetSet('Date', true);
-
-    // FORMATTING
 
     addFormatToken('d', 0, 'do', 'day');
 
@@ -24086,8 +23798,8 @@ if (typeof exports !== "undefined") {
     addRegexToken('ddd',  matchWord);
     addRegexToken('dddd', matchWord);
 
-    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
-        var weekday = config._locale.weekdaysParse(input, token, config._strict);
+    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config) {
+        var weekday = config._locale.weekdaysParse(input);
         // if we didn't get a weekday name, mark the date as invalid
         if (weekday != null) {
             week.d = weekday;
@@ -24122,9 +23834,8 @@ if (typeof exports !== "undefined") {
     // LOCALES
 
     var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
-    function localeWeekdays (m, format) {
-        return isArray(this._weekdays) ? this._weekdays[m.day()] :
-            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+    function localeWeekdays (m) {
+        return this._weekdays[m.day()];
     }
 
     var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
@@ -24137,37 +23848,20 @@ if (typeof exports !== "undefined") {
         return this._weekdaysMin[m.day()];
     }
 
-    function localeWeekdaysParse (weekdayName, format, strict) {
+    function localeWeekdaysParse (weekdayName) {
         var i, mom, regex;
 
-        if (!this._weekdaysParse) {
-            this._weekdaysParse = [];
-            this._minWeekdaysParse = [];
-            this._shortWeekdaysParse = [];
-            this._fullWeekdaysParse = [];
-        }
+        this._weekdaysParse = this._weekdaysParse || [];
 
         for (i = 0; i < 7; i++) {
             // make the regex if we don't have it already
-
-            mom = local__createLocal([2000, 1]).day(i);
-            if (strict && !this._fullWeekdaysParse[i]) {
-                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
-                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
-                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
-            }
             if (!this._weekdaysParse[i]) {
+                mom = local__createLocal([2000, 1]).day(i);
                 regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
                 this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
             }
             // test the regex
-            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
-                return i;
-            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
-                return i;
-            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
-                return i;
-            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
+            if (this._weekdaysParse[i].test(weekdayName)) {
                 return i;
             }
         }
@@ -24176,9 +23870,6 @@ if (typeof exports !== "undefined") {
     // MOMENTS
 
     function getSetDayOfWeek (input) {
-        if (!this.isValid()) {
-            return input != null ? this : NaN;
-        }
         var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
         if (input != null) {
             input = parseWeekday(input, this.localeData());
@@ -24189,73 +23880,20 @@ if (typeof exports !== "undefined") {
     }
 
     function getSetLocaleDayOfWeek (input) {
-        if (!this.isValid()) {
-            return input != null ? this : NaN;
-        }
         var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
         return input == null ? weekday : this.add(input - weekday, 'd');
     }
 
     function getSetISODayOfWeek (input) {
-        if (!this.isValid()) {
-            return input != null ? this : NaN;
-        }
         // behaves the same as moment#day except
         // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
         // as a setter, sunday should belong to the previous week.
         return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
     }
 
-    // FORMATTING
-
-    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
-
-    // ALIASES
-
-    addUnitAlias('dayOfYear', 'DDD');
-
-    // PARSING
-
-    addRegexToken('DDD',  match1to3);
-    addRegexToken('DDDD', match3);
-    addParseToken(['DDD', 'DDDD'], function (input, array, config) {
-        config._dayOfYear = toInt(input);
-    });
-
-    // HELPERS
-
-    // MOMENTS
-
-    function getSetDayOfYear (input) {
-        var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
-        return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
-    }
-
-    // FORMATTING
-
-    function hFormat() {
-        return this.hours() % 12 || 12;
-    }
-
     addFormatToken('H', ['HH', 2], 0, 'hour');
-    addFormatToken('h', ['hh', 2], 0, hFormat);
-
-    addFormatToken('hmm', 0, 0, function () {
-        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
-    });
-
-    addFormatToken('hmmss', 0, 0, function () {
-        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
-            zeroFill(this.seconds(), 2);
-    });
-
-    addFormatToken('Hmm', 0, 0, function () {
-        return '' + this.hours() + zeroFill(this.minutes(), 2);
-    });
-
-    addFormatToken('Hmmss', 0, 0, function () {
-        return '' + this.hours() + zeroFill(this.minutes(), 2) +
-            zeroFill(this.seconds(), 2);
+    addFormatToken('h', ['hh', 2], 0, function () {
+        return this.hours() % 12 || 12;
     });
 
     function meridiem (token, lowercase) {
@@ -24284,11 +23922,6 @@ if (typeof exports !== "undefined") {
     addRegexToken('HH', match1to2, match2);
     addRegexToken('hh', match1to2, match2);
 
-    addRegexToken('hmm', match3to4);
-    addRegexToken('hmmss', match5to6);
-    addRegexToken('Hmm', match3to4);
-    addRegexToken('Hmmss', match5to6);
-
     addParseToken(['H', 'HH'], HOUR);
     addParseToken(['a', 'A'], function (input, array, config) {
         config._isPm = config._locale.isPM(input);
@@ -24297,32 +23930,6 @@ if (typeof exports !== "undefined") {
     addParseToken(['h', 'hh'], function (input, array, config) {
         array[HOUR] = toInt(input);
         getParsingFlags(config).bigHour = true;
-    });
-    addParseToken('hmm', function (input, array, config) {
-        var pos = input.length - 2;
-        array[HOUR] = toInt(input.substr(0, pos));
-        array[MINUTE] = toInt(input.substr(pos));
-        getParsingFlags(config).bigHour = true;
-    });
-    addParseToken('hmmss', function (input, array, config) {
-        var pos1 = input.length - 4;
-        var pos2 = input.length - 2;
-        array[HOUR] = toInt(input.substr(0, pos1));
-        array[MINUTE] = toInt(input.substr(pos1, 2));
-        array[SECOND] = toInt(input.substr(pos2));
-        getParsingFlags(config).bigHour = true;
-    });
-    addParseToken('Hmm', function (input, array, config) {
-        var pos = input.length - 2;
-        array[HOUR] = toInt(input.substr(0, pos));
-        array[MINUTE] = toInt(input.substr(pos));
-    });
-    addParseToken('Hmmss', function (input, array, config) {
-        var pos1 = input.length - 4;
-        var pos2 = input.length - 2;
-        array[HOUR] = toInt(input.substr(0, pos1));
-        array[MINUTE] = toInt(input.substr(pos1, 2));
-        array[SECOND] = toInt(input.substr(pos2));
     });
 
     // LOCALES
@@ -24351,8 +23958,6 @@ if (typeof exports !== "undefined") {
     // this rule.
     var getSetHour = makeGetSet('Hours', true);
 
-    // FORMATTING
-
     addFormatToken('m', ['mm', 2], 0, 'minute');
 
     // ALIASES
@@ -24369,8 +23974,6 @@ if (typeof exports !== "undefined") {
 
     var getSetMinute = makeGetSet('Minutes', false);
 
-    // FORMATTING
-
     addFormatToken('s', ['ss', 2], 0, 'second');
 
     // ALIASES
@@ -24386,8 +23989,6 @@ if (typeof exports !== "undefined") {
     // MOMENTS
 
     var getSetSecond = makeGetSet('Seconds', false);
-
-    // FORMATTING
 
     addFormatToken('S', 0, 0, function () {
         return ~~(this.millisecond() / 100);
@@ -24444,8 +24045,6 @@ if (typeof exports !== "undefined") {
 
     var getSetMillisecond = makeGetSet('Milliseconds', false);
 
-    // FORMATTING
-
     addFormatToken('z',  0, 0, 'zoneAbbr');
     addFormatToken('zz', 0, 0, 'zoneName');
 
@@ -24461,43 +24060,40 @@ if (typeof exports !== "undefined") {
 
     var momentPrototype__proto = Moment.prototype;
 
-    momentPrototype__proto.add               = add_subtract__add;
-    momentPrototype__proto.calendar          = moment_calendar__calendar;
-    momentPrototype__proto.clone             = clone;
-    momentPrototype__proto.diff              = diff;
-    momentPrototype__proto.endOf             = endOf;
-    momentPrototype__proto.format            = format;
-    momentPrototype__proto.from              = from;
-    momentPrototype__proto.fromNow           = fromNow;
-    momentPrototype__proto.to                = to;
-    momentPrototype__proto.toNow             = toNow;
-    momentPrototype__proto.get               = getSet;
-    momentPrototype__proto.invalidAt         = invalidAt;
-    momentPrototype__proto.isAfter           = isAfter;
-    momentPrototype__proto.isBefore          = isBefore;
-    momentPrototype__proto.isBetween         = isBetween;
-    momentPrototype__proto.isSame            = isSame;
-    momentPrototype__proto.isSameOrAfter     = isSameOrAfter;
-    momentPrototype__proto.isSameOrBefore    = isSameOrBefore;
-    momentPrototype__proto.isValid           = moment_valid__isValid;
-    momentPrototype__proto.lang              = lang;
-    momentPrototype__proto.locale            = locale;
-    momentPrototype__proto.localeData        = localeData;
-    momentPrototype__proto.max               = prototypeMax;
-    momentPrototype__proto.min               = prototypeMin;
-    momentPrototype__proto.parsingFlags      = parsingFlags;
-    momentPrototype__proto.set               = getSet;
-    momentPrototype__proto.startOf           = startOf;
-    momentPrototype__proto.subtract          = add_subtract__subtract;
-    momentPrototype__proto.toArray           = toArray;
-    momentPrototype__proto.toObject          = toObject;
-    momentPrototype__proto.toDate            = toDate;
-    momentPrototype__proto.toISOString       = moment_format__toISOString;
-    momentPrototype__proto.toJSON            = toJSON;
-    momentPrototype__proto.toString          = toString;
-    momentPrototype__proto.unix              = unix;
-    momentPrototype__proto.valueOf           = to_type__valueOf;
-    momentPrototype__proto.creationData      = creationData;
+    momentPrototype__proto.add          = add_subtract__add;
+    momentPrototype__proto.calendar     = moment_calendar__calendar;
+    momentPrototype__proto.clone        = clone;
+    momentPrototype__proto.diff         = diff;
+    momentPrototype__proto.endOf        = endOf;
+    momentPrototype__proto.format       = format;
+    momentPrototype__proto.from         = from;
+    momentPrototype__proto.fromNow      = fromNow;
+    momentPrototype__proto.to           = to;
+    momentPrototype__proto.toNow        = toNow;
+    momentPrototype__proto.get          = getSet;
+    momentPrototype__proto.invalidAt    = invalidAt;
+    momentPrototype__proto.isAfter      = isAfter;
+    momentPrototype__proto.isBefore     = isBefore;
+    momentPrototype__proto.isBetween    = isBetween;
+    momentPrototype__proto.isSame       = isSame;
+    momentPrototype__proto.isValid      = moment_valid__isValid;
+    momentPrototype__proto.lang         = lang;
+    momentPrototype__proto.locale       = locale;
+    momentPrototype__proto.localeData   = localeData;
+    momentPrototype__proto.max          = prototypeMax;
+    momentPrototype__proto.min          = prototypeMin;
+    momentPrototype__proto.parsingFlags = parsingFlags;
+    momentPrototype__proto.set          = getSet;
+    momentPrototype__proto.startOf      = startOf;
+    momentPrototype__proto.subtract     = add_subtract__subtract;
+    momentPrototype__proto.toArray      = toArray;
+    momentPrototype__proto.toObject     = toObject;
+    momentPrototype__proto.toDate       = toDate;
+    momentPrototype__proto.toISOString  = moment_format__toISOString;
+    momentPrototype__proto.toJSON       = moment_format__toISOString;
+    momentPrototype__proto.toString     = toString;
+    momentPrototype__proto.unix         = unix;
+    momentPrototype__proto.valueOf      = to_type__valueOf;
 
     // Year
     momentPrototype__proto.year       = getSetYear;
@@ -24583,7 +24179,7 @@ if (typeof exports !== "undefined") {
 
     function locale_calendar__calendar (key, mom, now) {
         var output = this._calendar[key];
-        return isFunction(output) ? output.call(mom, now) : output;
+        return typeof output === 'function' ? output.call(mom, now) : output;
     }
 
     var defaultLongDateFormat = {
@@ -24645,21 +24241,21 @@ if (typeof exports !== "undefined") {
 
     function relative__relativeTime (number, withoutSuffix, string, isFuture) {
         var output = this._relativeTime[string];
-        return (isFunction(output)) ?
+        return (typeof output === 'function') ?
             output(number, withoutSuffix, string, isFuture) :
             output.replace(/%d/i, number);
     }
 
     function pastFuture (diff, output) {
         var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
-        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
+        return typeof format === 'function' ? format(output) : format.replace(/%s/i, output);
     }
 
     function locale_set__set (config) {
         var prop, i;
         for (i in config) {
             prop = config[i];
-            if (isFunction(prop)) {
+            if (typeof prop === 'function') {
                 this[i] = prop;
             } else {
                 this['_' + i] = prop;
@@ -24689,15 +24285,11 @@ if (typeof exports !== "undefined") {
     prototype__proto.set             = locale_set__set;
 
     // Month
-    prototype__proto.months            =        localeMonths;
-    prototype__proto._months           = defaultLocaleMonths;
-    prototype__proto.monthsShort       =        localeMonthsShort;
-    prototype__proto._monthsShort      = defaultLocaleMonthsShort;
-    prototype__proto.monthsParse       =        localeMonthsParse;
-    prototype__proto._monthsRegex      = defaultMonthsRegex;
-    prototype__proto.monthsRegex       = monthsRegex;
-    prototype__proto._monthsShortRegex = defaultMonthsShortRegex;
-    prototype__proto.monthsShortRegex  = monthsShortRegex;
+    prototype__proto.months       =        localeMonths;
+    prototype__proto._months      = defaultLocaleMonths;
+    prototype__proto.monthsShort  =        localeMonthsShort;
+    prototype__proto._monthsShort = defaultLocaleMonthsShort;
+    prototype__proto.monthsParse  =        localeMonthsParse;
 
     // Week
     prototype__proto.week = localeWeek;
@@ -24985,15 +24577,15 @@ if (typeof exports !== "undefined") {
         var years    = round(duration.as('y'));
 
         var a = seconds < thresholds.s && ['s', seconds]  ||
-                minutes <= 1           && ['m']           ||
+                minutes === 1          && ['m']           ||
                 minutes < thresholds.m && ['mm', minutes] ||
-                hours   <= 1           && ['h']           ||
+                hours   === 1          && ['h']           ||
                 hours   < thresholds.h && ['hh', hours]   ||
-                days    <= 1           && ['d']           ||
+                days    === 1          && ['d']           ||
                 days    < thresholds.d && ['dd', days]    ||
-                months  <= 1           && ['M']           ||
+                months  === 1          && ['M']           ||
                 months  < thresholds.M && ['MM', months]  ||
-                years   <= 1           && ['y']           || ['yy', years];
+                years   === 1          && ['y']           || ['yy', years];
 
         a[2] = withoutSuffix;
         a[3] = +posNegDuration > 0;
@@ -25114,8 +24706,6 @@ if (typeof exports !== "undefined") {
 
     // Side effect imports
 
-    // FORMATTING
-
     addFormatToken('X', 0, 0, 'unix');
     addFormatToken('x', 0, 0, 'valueOf');
 
@@ -25133,14 +24723,13 @@ if (typeof exports !== "undefined") {
     // Side effect imports
 
 
-    utils_hooks__hooks.version = '2.11.2';
+    utils_hooks__hooks.version = '2.10.6';
 
     setHookCallback(local__createLocal);
 
     utils_hooks__hooks.fn                    = momentPrototype;
     utils_hooks__hooks.min                   = min;
     utils_hooks__hooks.max                   = max;
-    utils_hooks__hooks.now                   = now;
     utils_hooks__hooks.utc                   = create_utc__createUTC;
     utils_hooks__hooks.unix                  = moment__createUnix;
     utils_hooks__hooks.months                = lists__listMonths;
@@ -25159,7 +24748,6 @@ if (typeof exports !== "undefined") {
     utils_hooks__hooks.weekdaysShort         = lists__listWeekdaysShort;
     utils_hooks__hooks.normalizeUnits        = normalizeUnits;
     utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
-    utils_hooks__hooks.prototype             = momentPrototype;
 
     var _moment = utils_hooks__hooks;
 
@@ -25697,7 +25285,7 @@ if (typeof exports !== "undefined") {
   }
 }).call(window);
 
-//#
+//# 
 },{}],"pikaday":[function(require,module,exports){
 /*!
  * Pikaday
@@ -26118,7 +25706,7 @@ if (typeof exports !== "undefined") {
                 return;
             }
 
-            if (!hasClass(target, 'is-disabled')) {
+            if (!hasClass(target.parentNode, 'is-disabled')) {
                 if (hasClass(target, 'pika-button') && !hasClass(target, 'is-empty')) {
                     self.setDate(new Date(target.getAttribute('data-pika-year'), target.getAttribute('data-pika-month'), target.getAttribute('data-pika-day')));
                     if (opts.bound) {
@@ -26129,6 +25717,7 @@ if (typeof exports !== "undefined") {
                             }
                         }, 100);
                     }
+                    return;
                 }
                 else if (hasClass(target, 'pika-prev')) {
                     self.prevMonth();
@@ -26138,7 +25727,6 @@ if (typeof exports !== "undefined") {
                 }
             }
             if (!hasClass(target, 'pika-select')) {
-                // if this is touch event prevent mouse events emulation
                 if (e.preventDefault) {
                     e.preventDefault();
                 } else {
@@ -26244,8 +25832,7 @@ if (typeof exports !== "undefined") {
         self.el = document.createElement('div');
         self.el.className = 'pika-single' + (opts.isRTL ? ' is-rtl' : '') + (opts.theme ? ' ' + opts.theme : '');
 
-        addEvent(self.el, 'mousedown', self._onMouseDown, true);
-        addEvent(self.el, 'touchend', self._onMouseDown, true);
+        addEvent(self.el, 'ontouchend' in document ? 'touchend' : 'mousedown', self._onMouseDown, true);
         addEvent(self.el, 'change', self._onChange);
 
         if (opts.field) {
@@ -26339,7 +25926,9 @@ if (typeof exports !== "undefined") {
                 this.setMinDate(opts.minDate);
             }
             if (opts.maxDate) {
-                this.setMaxDate(opts.maxDate);
+                setToStartOfDay(opts.maxDate);
+                opts.maxYear  = opts.maxDate.getFullYear();
+                opts.maxMonth = opts.maxDate.getMonth();
             }
 
             if (isArray(opts.yearRange)) {
@@ -26527,7 +26116,6 @@ if (typeof exports !== "undefined") {
             this._o.minDate = value;
             this._o.minYear  = value.getFullYear();
             this._o.minMonth = value.getMonth();
-            this.draw();
         },
 
         /**
@@ -26535,11 +26123,7 @@ if (typeof exports !== "undefined") {
          */
         setMaxDate: function(value)
         {
-            setToStartOfDay(value);
             this._o.maxDate = value;
-            this._o.maxYear = value.getFullYear();
-            this._o.maxMonth = value.getMonth();
-            this.draw();
         },
 
         setStartRange: function(value)
@@ -26605,11 +26189,11 @@ if (typeof exports !== "undefined") {
         adjustPosition: function()
         {
             var field, pEl, width, height, viewportWidth, viewportHeight, scrollTop, left, top, clientRect;
-
+            
             if (this._o.container) return;
-
+            
             this.el.style.position = 'absolute';
-
+            
             field = this._o.trigger;
             pEl = field;
             width = this.el.offsetWidth;
@@ -26679,7 +26263,8 @@ if (typeof exports !== "undefined") {
             cells += 7 - after;
             for (var i = 0, r = 0; i < cells; i++)
             {
-                var day = new Date(year, month, 1 + (i - before)),
+                var dayConfig,
+                    day = new Date(year, month, 1 + (i - before)),
                     isSelected = isDate(this._d) ? compareDates(day, this._d) : false,
                     isToday = compareDates(day, now),
                     isEmpty = i < before || i >= (days + before),
@@ -26763,7 +26348,6 @@ if (typeof exports !== "undefined") {
         {
             this.hide();
             removeEvent(this.el, 'mousedown', this._onMouseDown, true);
-            removeEvent(this.el, 'touchend', this._onMouseDown, true);
             removeEvent(this.el, 'change', this._onChange);
             if (this._o.field) {
                 removeEvent(this._o.field, 'change', this._onInputChange);
@@ -28494,7 +28078,7 @@ if (typeof exports !== "undefined") {
  * @see {@link https://github.com/zeroclipboard/zeroclipboard/issues/511}
  * @see {@link http://zeroclipboard.org/test-iframes.html}
  *
- * @returns `true` (is sandboxed), `false` (is not sandboxed), or `null` (uncertain)
+ * @returns `true` (is sandboxed), `false` (is not sandboxed), or `null` (uncertain) 
  * @private
  */
   var _detectSandbox = function(doNotReassessFlashSupport) {
