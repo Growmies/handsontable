@@ -160,10 +160,12 @@ class WalkontableTableRenderer {
     let visibleRowIndex = 0;
     let sourceRowIndex = this.rowFilter.renderedToSource(visibleRowIndex);
     let isWorkingOnClone = this.wtTable.isWorkingOnClone();
+    let manyRowsWarning = false;
 
     while (sourceRowIndex < totalRows && sourceRowIndex >= 0) {
-      if (visibleRowIndex > 1000) {
-        console.error('Security brake: Too much TRs. Please define height for your table, which will enforce scrollbars.');
+      if (visibleRowIndex > 1000 && !manyRowsWarning) {
+        console.info('Your table has a lot of visible rows - Please define height for your table, which will enforce scrollbars.');
+        manyRowsWarning = true;
       }
       if (rowsToRender !== void 0 && visibleRowIndex === rowsToRender) {
         // We have as much rows as needed for this clone

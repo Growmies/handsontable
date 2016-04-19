@@ -14,13 +14,13 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)
+ * Date: Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
 window.Handsontable = {
   version: '0.24.1',
-  buildDate: 'Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)',
+  buildDate: 'Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)',
 };
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Handsontable = f()}})(function(){var define,module,exports;return (function init(modules, cache, entry) {
   (function outer (modules, cache, entry) {
@@ -3546,9 +3546,11 @@ var WalkontableTableRenderer = function WalkontableTableRenderer(wtTable) {
     var visibleRowIndex = 0;
     var sourceRowIndex = this.rowFilter.renderedToSource(visibleRowIndex);
     var isWorkingOnClone = this.wtTable.isWorkingOnClone();
+    var manyRowsWarning = false;
     while (sourceRowIndex < totalRows && sourceRowIndex >= 0) {
-      if (visibleRowIndex > 1000) {
-        console.error('Security brake: Too much TRs. Please define height for your table, which will enforce scrollbars.');
+      if (visibleRowIndex > 1000 && !manyRowsWarning) {
+        console.info('Your table has a lot of visible rows - Please define height for your table, which will enforce scrollbars.');
+        manyRowsWarning = true;
       }
       if (rowsToRender !== void 0 && visibleRowIndex === rowsToRender) {
         break;
@@ -4208,7 +4210,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = require("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = require("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Tue Apr 05 2016 09:46:15 GMT-0600 (MDT)';
+Handsontable.buildDate = 'Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.24.1';
 var baseVersion = '@@baseVersion';
