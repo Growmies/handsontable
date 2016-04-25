@@ -131,12 +131,12 @@ class ManualColumnResize extends BasePlugin {
     let col = this.hot.view.wt.wtTable.getCoords(TH).col; // getCoords returns WalkontableCellCoords
 
     if (col >= 0) { // if not col header
-      var box = this.currentTH.getBoundingClientRect();
-      var position = $(TH).position();
+      let box = this.currentTH.getBoundingClientRect();
+
       this.currentCol = col;
-      this.startOffset = position.left - 6;
+      this.startOffset = box.left - 6;
       this.startWidth = parseInt(box.width, 10);
-      this.handle.style.top = (box.top - 8) + 'px';
+      this.handle.style.top = box.top + 'px';
       this.handle.style.left = this.startOffset + this.startWidth + 'px';
       this.hot.rootElement.appendChild(this.handle);
     }
