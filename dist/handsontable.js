@@ -6,6 +6,7 @@
  * 1) When you click on a row or column header, the callback also tells you that a row or column header was click (fullRange, internally)
  * 2) Sorting of any kind of formatted numbers (currecy included) with the help of the numeral.js library.
  * 3) The ability to inspect/modify the data that will be applied after a dragging+copying gesture
+ * 4) Changes to the ManualColumnResize plugin to better position the handle.
  *
  * The above features are critical for the requirements of our organization.
  *
@@ -14,13 +15,13 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)
+ * Date: Mon Apr 25 2016 11:20:25 GMT-0600 (MDT)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
 window.Handsontable = {
   version: '0.24.1',
-  buildDate: 'Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)',
+  buildDate: 'Mon Apr 25 2016 11:20:25 GMT-0600 (MDT)',
 };
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Handsontable = f()}})(function(){var define,module,exports;return (function init(modules, cache, entry) {
   (function outer (modules, cache, entry) {
@@ -4210,7 +4211,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = require("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = require("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Tue Apr 19 2016 13:50:33 GMT-0600 (MDT)';
+Handsontable.buildDate = 'Mon Apr 25 2016 11:20:25 GMT-0600 (MDT)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.24.1';
 var baseVersion = '@@baseVersion';
@@ -16070,10 +16071,11 @@ var $ManualColumnResize = ManualColumnResize;
     var col = this.hot.view.wt.wtTable.getCoords(TH).col;
     if (col >= 0) {
       var box = this.currentTH.getBoundingClientRect();
+      var position = $(TH).position();
       this.currentCol = col;
-      this.startOffset = box.left - 6;
+      this.startOffset = position.left - 6;
       this.startWidth = parseInt(box.width, 10);
-      this.handle.style.top = box.top + 'px';
+      this.handle.style.top = (box.top - 8) + 'px';
       this.handle.style.left = this.startOffset + this.startWidth + 'px';
       this.hot.rootElement.appendChild(this.handle);
     }

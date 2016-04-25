@@ -6,6 +6,7 @@
  * 1) When you click on a row or column header, the callback also tells you that a row or column header was click (fullRange, internally)
  * 2) Sorting of any kind of formatted numbers (currecy included) with the help of the numeral.js library.
  * 3) The ability to inspect/modify the data that will be applied after a dragging+copying gesture
+ * 4) Changes to the ManualColumnResize plugin to better position the handle.
  *
  * The above features are critical for the requirements of our organization.
  *
