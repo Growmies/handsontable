@@ -270,10 +270,24 @@ const REGISTERED_HOOKS = [
   'afterRender',
 
   /**
+   * Fired before starting rendering the cell.
+   *
+   * @event Hooks#beforeRenderer
+   * @since 0.24.2
+   * @param {Element} TD Currently rendered cell's TD element.
+   * @param {Number} row Row index.
+   * @param {Number} col Column index.
+   * @param {String|Number} prop Column property name or a column index, if datasource is an array of arrays.
+   * @param {String} value Value of the rendered cell.
+   * @param {Object} cellProperties Object containing the cell's properties.
+   */
+  'beforeRenderer',
+
+  /**
    * Fired after finishing rendering the cell (after the renderer finishes).
    *
    * @event Hooks#afterRenderer
-   * @since 0.11
+   * @since 0.11.0
    * @param {Element} TD Currently rendered cell's TD element.
    * @param {Number} row Row index.
    * @param {Number} col Column index.
@@ -521,6 +535,17 @@ const REGISTERED_HOOKS = [
   'beforeOnCellMouseDown',
 
   /**
+   * Fired after the user moved cursor over a cell, but before all the calculations related with it.
+   *
+   * @event Hooks#beforeOnCellMouseOver
+   * @param {Event} event The `mouseover` event object.
+   * @param {WalkontableCellCoords} coords WalkontableCellCoords object containing the coordinates of the clicked cell.
+   * @param {Element} TD TD element.
+   * @param {Object} blockCalculations Contain keys 'row' and 'column' with boolean value.
+   */
+  'beforeOnCellMouseOver',
+
+  /**
    * Callback is fired when one or more columns are about to be removed.
    *
    * @event Hooks#beforeRemoveCol
@@ -548,6 +573,14 @@ const REGISTERED_HOOKS = [
    *                           rendering was triggered by scrolling or moving selection.
    */
   'beforeRender',
+
+  /**
+   * Callback fired before setting range is started.
+   *
+   * @event Hooks#beforeSetRangeStart
+   * @param {Array} coords WalkontableCellCoords array.
+   */
+  'beforeSetRangeStart',
 
   /**
    * Callback fired before setting range is ended.
@@ -849,7 +882,35 @@ const REGISTERED_HOOKS = [
    * @param {Array} setData Data the will be autofilled into the range specified
    * @param {Object} input The value of the cell at the starting location
    */
-  'beforeAutofillSetData'
+  'beforeAutofillSetData',
+
+  /**
+   * Fired before applying [filtering]{@link http://docs.handsontable.com/pro/demo-filtering.html}.
+   *
+   * @pro
+   * @event Hooks#beforeFilter
+   * @param {Array} formulasStack An array of objects with added formulas.
+   * @returns {Boolean} If hook returns `false` value then filtering won't be applied on the UI side (server-side filtering).
+   */
+  'beforeFilter',
+
+  /**
+   * Fired after applying [filtering]{@link http://docs.handsontable.com/pro/demo-filtering.html}.
+   *
+   * @pro
+   * @event Hooks#afterFilter
+   * @param {Array} formulasStack An array of objects with added formulas.
+   */
+  'afterFilter',
+
+  /**
+   * Used to modify the column header height.
+   *
+   * @event Hooks#modifyColumnHeaderHeight
+   * @since 0.25.0
+   * @param {Number} col Column index.
+   */
+  'modifyColumnHeaderHeight',
 ];
 
 import {arrayEach} from './helpers/array';
@@ -1189,7 +1250,3 @@ class Hooks {
 }
 
 export {Hooks};
-
-// temp for tests only!
-Handsontable.utils = Handsontable.utils || {};
-Handsontable.utils.Hooks = Hooks;

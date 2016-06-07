@@ -1,9 +1,11 @@
+import Handsontable from './../browser';
 import moment from 'moment';
-import {getEditor} from './../editors';
 
 // Formats which are correctly parsed to time (supported by momentjs)
 const STRICT_FORMATS = [
   'YYYY-MM-DDTHH:mm:ss.SSSZ',
+  'X', // Unix timestamp
+  'x' // Unix ms timestamp
 ];
 
 /**
@@ -23,21 +25,19 @@ Handsontable.TimeValidator = function(value, callback) {
     value = '';
   }
 
-  if (typeof value === 'number') {
-    value = `${value}`;
-  }
-  if (/^\d{9,10}$/.test(value)) { // timestamp
-    value = new Date(parseInt(`${value}000`, 10));
+  value = /^\d{3,}$/.test(value) ? parseInt(value, 10) : value;
 
-  } else if (/^\d{13}$/.test(value)) { // micro timestamp
-    value = new Date(parseInt(value, 10));
+  let twoDigitValue = /^\d{1,2}$/.test(value);
+
+  if (twoDigitValue) {
+    value = value + ':00';
   }
 
-  let date = moment(value, STRICT_FORMATS, true).isValid() ? moment(new Date(value)) : moment(value, timeFormat);
+  let date = moment(value, STRICT_FORMATS, true).isValid() ? moment(value) : moment(value, timeFormat);
   let isValidTime = date.isValid();
 
   // is it in the specified format
-  let isValidFormat = moment(value, timeFormat, true).isValid();
+  let isValidFormat = moment(value, timeFormat, true).isValid() && !twoDigitValue;
 
   if (this.allowEmpty && value === '') {
     isValidTime = true;
@@ -49,7 +49,6 @@ Handsontable.TimeValidator = function(value, callback) {
   if (!isValidTime && isValidFormat) {
     valid = true;
   }
-
   if (isValidTime && !isValidFormat) {
     if (this.correctFormat === true) { // if format correction is enabled
 

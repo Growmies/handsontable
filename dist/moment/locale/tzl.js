@@ -24,6 +24,10 @@
             LLL : 'D. MMMM [dallas] YYYY LT',
             LLLL : 'dddd, [li] D. MMMM [dallas] YYYY LT'
         },
+        meridiemParse: /d\'o|d\'a/i,
+        isPM : function (input) {
+            return 'd\'o' === input.toLowerCase();
+        },
         meridiem : function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'd\'o' : 'D\'O';

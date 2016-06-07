@@ -1,6 +1,8 @@
+import Handsontable from './browser';
 import numeral from 'numeral';
 import {addClass, empty, isChildOfWebComponentTable, removeClass} from './helpers/dom/element';
 import {columnFactory} from './helpers/setting';
+import {isMobileBrowser} from './helpers/browser';
 import {DataMap} from './dataMap';
 import {EditorManager} from './editorManager';
 import {eventManager as eventManagerObject} from './eventManager';
@@ -585,6 +587,17 @@ Handsontable.Core = function Core(rootElement, userSettings) {
     },
 
     /**
+     * Starts selection range on given td object.
+     *
+     * @param {WalkontableCellCoords} coords
+     * @param keepEditorOpened
+     */
+    setRangeStartOnly: function(coords) {
+      Handsontable.hooks.run(instance, 'beforeSetRangeStartOnly', coords);
+      priv.selRange = new WalkontableCellRange(coords, coords, coords);
+    },
+
+    /**
      * Ends selection range on given td object.
      *
      * @param {WalkontableCellCoords} coords
@@ -890,7 +903,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
     dataSource.setData(priv.settings.data);
     Handsontable.hooks.run(instance, 'beforeInit');
 
-    if (Handsontable.mobileBrowser) {
+    if (isMobileBrowser()) {
       addClass(instance.rootElement, 'mobile');
     }
 
@@ -1038,7 +1051,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
         }
       }
 
-      if (instance.dataType === 'array' && priv.settings.allowInsertColumn) {
+      if (instance.dataType === 'array' && (!priv.settings.columns || priv.settings.columns.length === 0) && priv.settings.allowInsertColumn) {
         while (datamap.propToCol(changes[i][1]) > instance.countCols() - 1) {
           datamap.createCol();
         }
@@ -1063,7 +1076,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
           row = cellProperties.visualRow,
           td = instance.getCell(row, col, true);
 
-      if (td) {
+      if (td && td.nodeName != 'TH') {
         instance.view.wt.wtSettings.settings.cellRenderer(row, col, td);
       }
       callback(valid);
@@ -1643,6 +1656,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
     }
 
     if (!init) {
+      datamap.clearLengthCache(); // force clear cache length on updateSettings() #3416
       Handsontable.hooks.run(instance, 'afterUpdateSettings');
     }
 
@@ -2204,8 +2218,8 @@ Handsontable.Core = function Core(rootElement, userSettings) {
    * @memberof Core#
    * @function getCellRenderer
    * @since 0.11
-   * @param {Number} row Row index.
-   * @param {Number} col Column index.
+   * @param {Number|Object} row Row index or cell meta object.
+   * @param {Number} [col] Column index.
    * @returns {Function} The renderer function.
    */
   this.getCellRenderer = function(row, col) {
@@ -2547,44 +2561,6 @@ Handsontable.Core = function Core(rootElement, userSettings) {
     }
   };
 
-  this.getColspanOffset = function(col, level) {
-    var colspanSum = 0;
-
-    if (instance.colspanArray) {
-      for (var i = 0; i < col; i++) {
-        colspanSum += instance.colspanArray[level][i] - 1 || 0;
-      }
-
-      return colspanSum;
-    }
-
-    var colspanSum = 0;
-
-    var TRindex = instance.view.wt.wtTable.THEAD.childNodes.length - level - 1;
-    var TR = instance.view.wt.wtTable.THEAD.querySelector('tr:nth-child(' + parseInt(TRindex + 1, 10) + ')');
-    var rowHeadersCount = instance.view.wt.wtSettings.settings.rowHeaders().length;
-
-    for (var i = rowHeadersCount; i < rowHeadersCount + col; i++) {
-      if (TR.childNodes[i].hasAttribute('colspan')) {
-        colspanSum += parseInt(TR.childNodes[i].getAttribute('colspan'), 10) - 1;
-      }
-    }
-
-    return colspanSum;
-  };
-
-  this.getHeaderColspan = function(col, level) {
-    var TRindex = instance.view.wt.wtTable.THEAD.childNodes.length - level - 1;
-    var rowHeadersCount = instance.view.wt.wtSettings.settings.rowHeaders().length;
-    var TR = instance.view.wt.wtTable.THEAD.querySelector('tr:nth-child(' + parseInt(TRindex + 1, 10) + ')');
-    var offsettedColIndex = rowHeadersCount + col - instance.view.wt.wtViewport.columnsRenderCalculator.startColumn;
-
-    if (TR.childNodes[offsettedColIndex].hasAttribute('colspan')) {
-      return parseInt(TR.childNodes[offsettedColIndex].getAttribute('colspan'), 10);
-    }
-    return 0;
-  };
-
   /**
    * Returns an index of the first rendered row.
    *
@@ -2815,6 +2791,46 @@ Handsontable.Core = function Core(rootElement, userSettings) {
    */
   this.deselectCell = function() {
     selection.deselect();
+  };
+
+  /**
+   * Scroll viewport to coords specified by the `row` and `column` arguments.
+   *
+   * @since 0.24.3
+   * @memberof Core#
+   * @function scrollViewportTo
+   * @param {Number|null} row Row index.
+   * @param {Number|null} column Column index.
+   * @returns {Boolean} `true` if scroll was successful, `false` otherwise.
+   */
+  this.scrollViewportTo = function(row, column) {
+    if (row !== void 0 && (row < 0 || row >= instance.countRows())) {
+      return false;
+    }
+    if (column !== void 0 && (column < 0 || column >= instance.countCols())) {
+      return false;
+    }
+
+    let result = false;
+
+    if (row !== void 0 && column !== void 0) {
+      instance.view.wt.scrollVertical(row);
+      instance.view.wt.scrollHorizontal(column);
+
+      result = true;
+    }
+    if (typeof row === 'number' && typeof column !== 'number') {
+      instance.view.wt.scrollVertical(row);
+
+      result = true;
+    }
+    if (typeof column === 'number' && typeof row !== 'number') {
+      instance.view.wt.scrollHorizontal(column);
+
+      result = true;
+    }
+
+    return result;
   };
 
   /**
@@ -3544,8 +3560,9 @@ DefaultSettings.prototype = {
 
   /**
    * If `true`, mouse click outside the grid will deselect the current selection.
+   * Can be a function that takes the click event target and returns a boolean.
    *
-   * @type {Boolean}
+   * @type {Boolean|Function}
    * @default true
    */
   outsideClickDeselects: true,
@@ -4487,7 +4504,7 @@ DefaultSettings.prototype = {
    *  * `property` - Defines the property name of the data object, which will to be used as a label.
    *  (eg. `label: {property: 'name.last'}`). This option works only if data was passed as an array of objects.
    *  * `position` - String which describes where to place the label text (before or after checkbox element).
-   * Valid value are `'before'` and '`after`' (efaults to `'after'`).
+   * Valid values are `'before'` and '`after`' (defaults to `'after'`).
    *  * `value` - String or a Function which will be used as label text.
    *
    * @example
@@ -4573,6 +4590,9 @@ DefaultSettings.prototype = {
    *
    * To configure the sync/async distribution, you can pass an absolute value (number of columns) or a percentage value.
    * `syncLimit` option is available since 0.16.0.
+   *
+   * You can also use the `useHeaders` option to take the column headers with into calculation.
+   *
    * @example
    * ```js
    * ...
@@ -4584,6 +4604,12 @@ DefaultSettings.prototype = {
    * // as a string (percent)
    * autoColumnSize: {syncLimit: '40%'},
    * ...
+   *
+   * ...
+   * // use headers width while calculation the column width
+   * autoColumnSize: {useHeaders: true},
+   * ...
+   *
    * ```
    *
    * @type {Object|Boolean}
@@ -4931,5 +4957,28 @@ DefaultSettings.prototype = {
    * ```
    */
   sortFunction: void 0,
+  /**
+   * If defined as 'true', the Autocomplete's suggestion list would by sorted by relevance (the closer to the left the match is, the higher the suggestion).
+   *
+   * Option desired for cells of the `'autocomplete'` type.
+   *
+   * @type {Boolean}
+   * @default true
+   */
+  sortByRelevance: true,
+  /**
+   * If defined as 'true', the Autocomplete's suggestion list would be updated after each change in the input area.
+   *
+   * @type {Boolean}
+   * @default true
+   */
+  filter: true,
+  /**
+   * If defined as 'true', filtering in the Autocomplete Editor will be case-sensitive.
+   *
+   * @type {Boolean}
+   * @default: false
+   */
+  filteringCaseSensitive: false,
 };
 Handsontable.DefaultSettings = DefaultSettings;
