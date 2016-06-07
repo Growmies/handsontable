@@ -249,10 +249,10 @@ class ManualColumnResize extends BasePlugin {
       let hookNewSize = this.hot.runHooks('beforeColumnResize', this.currentCol, this.newSize, true);
 
       if (hookNewSize !== void 0) {
-        this.newSize = hookNewSize;
+        this.newSize = hookNewSize.type === 'auto' ? hookNewSize.size : hookNewSize;
       }
 
-      if (this.hot.getSettings().stretchH === 'all') {
+      if ((this.hot.getSettings().stretchH === 'all' && hookNewSize.type !== 'auto') || this.currentCol === this.hot.getInstance().countCols() - 1) {
         this.clearManualSize(this.currentCol);
       } else {
         this.setManualSize(this.currentCol, this.newSize); // double click sets by auto row size plugin
@@ -263,6 +263,7 @@ class ManualColumnResize extends BasePlugin {
       this.hot.view.wt.wtOverlays.adjustElementsSize(true);
 
       this.hot.runHooks('afterColumnResize', this.currentCol, this.newSize, true);
+      this.saveManualColumnWidths();
     }
     this.dblclick = 0;
     this.autoresizeTimeout = null;
