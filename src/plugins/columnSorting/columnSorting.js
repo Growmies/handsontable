@@ -294,8 +294,9 @@ class ColumnSorting extends BasePlugin {
    * @returns {Function} The comparing function.
    */
   defaultSort(sortOrder) {
+    var complexNumRegex = /^([\-+]?[$€£¥₪₩₨].*|[\-+]?[$€£¥₪₩₨]?([0-9]{1,3},)+[0-9]+((\.[0-9]+))?)$/;
     return function(a, b) {
-      if ((a[1] && b[1]) && ((numeral().unformat(a[1]) == a[1] && numeral().unformat(b[1]) == b[1]) || (a[1].indexOf('$') > -1 && b[1].indexOf('$') > -1))) {
+      if (complexNumRegex.test(a[1]) && complexNumRegex.test(b[1])) {
         var unformattedA = numeral().unformat(a[1]);
         var unformattedB = numeral().unformat(b[1]);
         if (unformattedA < unformattedB) {

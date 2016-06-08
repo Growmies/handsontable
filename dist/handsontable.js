@@ -4252,7 +4252,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = _dereq_("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = _dereq_("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, dateHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Mon Jun 06 2016 13:30:03 GMT+0200 (CEST)';
+Handsontable.buildDate = 'Wed Jun 08 2016 10:28:00 GMT-0600 (MDT)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.25.1';
 var baseVersion = '@@baseVersion';
@@ -4816,6 +4816,9 @@ Handsontable.Core = function Core(rootElement, userSettings) {
             }
             current.row++;
           }
+          if (source === 'autofill') {
+            setData = instance.runHooks('beforeAutofillSetData', start, end, direction, setData, input);
+          }
           instance.setDataAtCell(setData, null, null, source || 'populateFromArray');
           break;
       }
@@ -4836,7 +4839,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
     },
     finish: function() {
       var sel = instance.getSelected();
-      Handsontable.hooks.run(instance, 'afterSelectionEnd', sel[0], sel[1], sel[2], sel[3]);
+      Handsontable.hooks.run(instance, 'afterSelectionEnd', sel[0], sel[1], sel[2], sel[3], instance.selection.selectedHeader);
       Handsontable.hooks.run(instance, 'afterSelectionEndByProp', sel[0], instance.colToProp(sel[1]), sel[2], instance.colToProp(sel[3]));
       instance.selection.inProgress = false;
     },
@@ -4891,7 +4894,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
         instance.view.wt.selections.highlight.add(priv.selRange.from);
         instance.view.wt.selections.highlight.add(priv.selRange.to);
       }
-      Handsontable.hooks.run(instance, 'afterSelection', priv.selRange.from.row, priv.selRange.from.col, priv.selRange.to.row, priv.selRange.to.col);
+      Handsontable.hooks.run(instance, 'afterSelection', priv.selRange.from.row, priv.selRange.from.col, priv.selRange.to.row, priv.selRange.to.col, instance.selection.selectedHeader);
       Handsontable.hooks.run(instance, 'afterSelectionByProp', priv.selRange.from.row, datamap.colToProp(priv.selRange.from.col), priv.selRange.to.row, datamap.colToProp(priv.selRange.to.col));
       if ((priv.selRange.from.row === 0 && priv.selRange.to.row === instance.countRows() - 1 && instance.countRows() > 1) || (priv.selRange.from.col === 0 && priv.selRange.to.col === instance.countCols() - 1 && instance.countCols() > 1)) {
         isHeaderSelected = true;
@@ -11182,7 +11185,7 @@ Object.defineProperties(exports, {
 });
 var $__helpers_47_array__,
     $__helpers_47_object__;
-var REGISTERED_HOOKS = ['afterCellMetaReset', 'afterChange', 'afterChangesObserved', 'afterContextMenuDefaultOptions', 'afterContextMenuHide', 'afterContextMenuShow', 'afterCopyLimit', 'afterCreateCol', 'afterCreateRow', 'afterDeselect', 'afterDestroy', 'afterDocumentKeyDown', 'afterGetCellMeta', 'afterGetColHeader', 'afterGetRowHeader', 'afterInit', 'afterLoadData', 'afterMomentumScroll', 'afterOnCellCornerMouseDown', 'afterOnCellMouseDown', 'afterOnCellMouseOver', 'afterRemoveCol', 'afterRemoveRow', 'afterRender', 'beforeRenderer', 'afterRenderer', 'afterScrollHorizontally', 'afterScrollVertically', 'afterSelection', 'afterSelectionByProp', 'afterSelectionEnd', 'afterSelectionEndByProp', 'afterSetCellMeta', 'afterUpdateSettings', 'afterValidate', 'beforeAutofill', 'beforeCellAlignment', 'beforeChange', 'beforeChangeRender', 'beforeDrawBorders', 'beforeGetCellMeta', 'beforeInit', 'beforeInitWalkontable', 'beforeKeyDown', 'beforeOnCellMouseDown', 'beforeOnCellMouseOver', 'beforeRemoveCol', 'beforeRemoveRow', 'beforeRender', 'beforeSetRangeStart', 'beforeSetRangeEnd', 'beforeTouchScroll', 'beforeValidate', 'construct', 'init', 'modifyCol', 'unmodifyCol', 'modifyColHeader', 'modifyColWidth', 'modifyRow', 'modifyRowHeader', 'modifyRowHeight', 'persistentStateLoad', 'persistentStateReset', 'persistentStateSave', 'beforeColumnSort', 'afterColumnSort', 'afterAutofillApplyValues', 'modifyCopyableRange', 'beforeColumnMove', 'afterColumnMove', 'beforeRowMove', 'afterRowMove', 'beforeColumnResize', 'afterColumnResize', 'beforeRowResize', 'afterRowResize', 'afterGetColumnHeaderRenderers', 'afterGetRowHeaderRenderers', 'beforeStretchingColumnWidth', 'beforeFilter', 'afterFilter', 'modifyColumnHeaderHeight'];
+var REGISTERED_HOOKS = ['afterCellMetaReset', 'afterChange', 'afterChangesObserved', 'afterContextMenuDefaultOptions', 'afterContextMenuHide', 'afterContextMenuShow', 'afterCopyLimit', 'afterCreateCol', 'afterCreateRow', 'afterDeselect', 'afterDestroy', 'afterDocumentKeyDown', 'afterGetCellMeta', 'afterGetColHeader', 'afterGetRowHeader', 'afterInit', 'afterLoadData', 'afterMomentumScroll', 'afterOnCellCornerMouseDown', 'afterOnCellMouseDown', 'afterOnCellMouseOver', 'afterRemoveCol', 'afterRemoveRow', 'afterRender', 'beforeRenderer', 'afterRenderer', 'afterScrollHorizontally', 'afterScrollVertically', 'afterSelection', 'afterSelectionByProp', 'afterSelectionEnd', 'afterSelectionEndByProp', 'afterSetCellMeta', 'afterUpdateSettings', 'afterValidate', 'beforeAutofill', 'beforeCellAlignment', 'beforeChange', 'beforeChangeRender', 'beforeDrawBorders', 'beforeGetCellMeta', 'beforeInit', 'beforeInitWalkontable', 'beforeKeyDown', 'beforeOnCellMouseDown', 'beforeOnCellMouseOver', 'beforeRemoveCol', 'beforeRemoveRow', 'beforeRender', 'beforeSetRangeStart', 'beforeSetRangeEnd', 'beforeTouchScroll', 'beforeValidate', 'construct', 'init', 'modifyCol', 'unmodifyCol', 'modifyColHeader', 'modifyColWidth', 'modifyRow', 'modifyRowHeader', 'modifyRowHeight', 'persistentStateLoad', 'persistentStateReset', 'persistentStateSave', 'beforeColumnSort', 'afterColumnSort', 'afterAutofillApplyValues', 'modifyCopyableRange', 'beforeColumnMove', 'afterColumnMove', 'beforeRowMove', 'afterRowMove', 'beforeColumnResize', 'afterColumnResize', 'beforeRowResize', 'afterRowResize', 'afterGetColumnHeaderRenderers', 'afterGetRowHeaderRenderers', 'beforeStretchingColumnWidth', 'beforeAutofillSetData', 'beforeFilter', 'afterFilter', 'modifyColumnHeaderHeight'];
 var arrayEach = ($__helpers_47_array__ = _dereq_("helpers/array"), $__helpers_47_array__ && $__helpers_47_array__.__esModule && $__helpers_47_array__ || {default: $__helpers_47_array__}).arrayEach;
 var objectEach = ($__helpers_47_object__ = _dereq_("helpers/object"), $__helpers_47_object__ && $__helpers_47_object__.__esModule && $__helpers_47_object__ || {default: $__helpers_47_object__}).objectEach;
 var Hooks = function Hooks() {
@@ -12638,7 +12641,18 @@ var $ColumnSorting = ColumnSorting;
     }, 0));
   },
   defaultSort: function(sortOrder) {
+    var complexNumRegex = /^([\-+]?[$€£¥₪₩₨].*|[\-+]?[$€£¥₪₩₨]?([0-9]{1,3},)+[0-9]+((\.[0-9]+))?)$/;
     return function(a, b) {
+      if (complexNumRegex.test(a[1]) && complexNumRegex.test(b[1])) {
+        var unformattedA = numeral().unformat(a[1]);
+        var unformattedB = numeral().unformat(b[1]);
+        if (unformattedA < unformattedB) {
+          return sortOrder ? -1 : 1;
+        }
+        if (unformattedA > unformattedB) {
+          return sortOrder ? 1 : -1;
+        }
+      }
       if (typeof a[1] == 'string') {
         a[1] = a[1].toLowerCase();
       }
@@ -16387,32 +16401,19 @@ var $ManualColumnResize = ManualColumnResize;
     var resize = (function(selectedCol, forceRender) {
       var hookNewSize = $__8.hot.runHooks('beforeColumnResize', selectedCol, $__8.newSize, true);
       if (hookNewSize !== void 0) {
-        $__8.newSize = hookNewSize;
+        $__8.newSize = hookNewSize.type === 'auto' ? hookNewSize.size : hookNewSize;
       }
-      if ($__8.hot.getSettings().stretchH === 'all') {
-        $__8.clearManualSize(selectedCol);
+      if (($__8.hot.getSettings().stretchH === 'all' && hookNewSize.type !== 'auto') || $__8.currentCol === $__8.hot.getInstance().countCols() - 1) {
+        $__8.clearManualSize($__8.currentCol);
       } else {
         $__8.setManualSize(selectedCol, $__8.newSize);
       }
       if (forceRender) {
         render();
       }
+      $__8.hot.runHooks('afterColumnResize', $__8.currentCol, $__8.newSize, true);
       $__8.saveManualColumnWidths();
-      $__8.hot.runHooks('afterColumnResize', selectedCol, $__8.newSize, true);
     });
-    if (this.dblclick >= 2) {
-      var selectedColsLength = this.selectedCols.length;
-      if (selectedColsLength > 1) {
-        arrayEach(this.selectedCols, (function(selectedCol) {
-          resize(selectedCol);
-        }));
-        render();
-      } else {
-        arrayEach(this.selectedCols, (function(selectedCol) {
-          resize(selectedCol, true);
-        }));
-      }
-    }
     this.dblclick = 0;
     this.autoresizeTimeout = null;
   },
