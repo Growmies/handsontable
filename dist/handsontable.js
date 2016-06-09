@@ -4252,7 +4252,7 @@ var domHelpers = ($__helpers_47_dom_47_element__ = _dereq_("helpers/dom/element"
 var domEventHelpers = ($__helpers_47_dom_47_event__ = _dereq_("helpers/dom/event"), $__helpers_47_dom_47_event__ && $__helpers_47_dom_47_event__.__esModule && $__helpers_47_dom_47_event__ || {default: $__helpers_47_dom_47_event__});
 var HELPERS = [arrayHelpers, browserHelpers, dataHelpers, dateHelpers, featureHelpers, functionHelpers, mixedHelpers, numberHelpers, objectHelpers, settingHelpers, stringHelpers, unicodeHelpers];
 var DOM = [domHelpers, domEventHelpers];
-Handsontable.buildDate = 'Wed Jun 08 2016 10:28:00 GMT-0600 (MDT)';
+Handsontable.buildDate = 'Thu Jun 09 2016 07:51:35 GMT-0600 (MDT)';
 Handsontable.packageName = 'handsontable';
 Handsontable.version = '0.25.1';
 var baseVersion = '@@baseVersion';
@@ -12641,42 +12641,57 @@ var $ColumnSorting = ColumnSorting;
     }, 0));
   },
   defaultSort: function(sortOrder) {
-    var complexNumRegex = /^([\-+]?[$€£¥₪₩₨].*|[\-+]?[$€£¥₪₩₨]?([0-9]{1,3},)+[0-9]+((\.[0-9]+))?)$/;
+    function isComplexNumeric(value) {
+      if (typeof value != 'string') {
+        return false;
+      }
+      if (/[a-zA-Z]/.test(value)) {
+        return false;
+      }
+      if (/^[-+]?[$€£¥₪₩₨]/.test(value)) {
+        return true;
+      }
+      if (/^[-+]?(\d{1,3},)+(\d{1,3})(\.\d*)?$/.test(value)) {
+        return true;
+      }
+    }
+    function getNumericValue(value) {
+      console.log('Getting value: ', value);
+      return numeral().unformat(value);
+    }
     return function(a, b) {
-      if (complexNumRegex.test(a[1]) && complexNumRegex.test(b[1])) {
-        var unformattedA = numeral().unformat(a[1]);
-        var unformattedB = numeral().unformat(b[1]);
-        if (unformattedA < unformattedB) {
-          return sortOrder ? -1 : 1;
-        }
-        if (unformattedA > unformattedB) {
-          return sortOrder ? 1 : -1;
-        }
+      var aVal = a[1];
+      var bVal = b[1];
+      if (isComplexNumeric(aVal)) {
+        aVal = getNumericValue(aVal);
       }
-      if (typeof a[1] == 'string') {
-        a[1] = a[1].toLowerCase();
+      if (isComplexNumeric(bVal)) {
+        bVal = getNumericValue(bVal);
       }
-      if (typeof b[1] == 'string') {
-        b[1] = b[1].toLowerCase();
+      if (typeof aVal == 'string') {
+        aVal = aVal.toLowerCase();
       }
-      if (a[1] === b[1]) {
+      if (typeof bVal == 'string') {
+        bVal = bVal.toLowerCase();
+      }
+      if (aVal === bVal) {
         return 0;
       }
-      if (a[1] === null || a[1] === '') {
+      if (aVal === null || aVal === '') {
         return 1;
       }
-      if (b[1] === null || b[1] === '') {
+      if (bVal === null || bVal === '') {
         return -1;
       }
-      if (isNaN(a[1]) && !isNaN(b[1])) {
+      if (isNaN(aVal) && !isNaN(bVal)) {
         return sortOrder ? 1 : -1;
-      } else if (!isNaN(a[1]) && isNaN(b[1])) {
+      } else if (!isNaN(aVal) && isNaN(bVal)) {
         return sortOrder ? -1 : 1;
       }
-      if (a[1] < b[1]) {
+      if (aVal < bVal) {
         return sortOrder ? -1 : 1;
       }
-      if (a[1] > b[1]) {
+      if (aVal > bVal) {
         return sortOrder ? 1 : -1;
       }
       return 0;
